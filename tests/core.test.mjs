@@ -99,7 +99,7 @@ test('inverted V length and geometry match 16.0341 MHz in feet',()=>{
 test('published roster has only approved map fields and no private console artifacts',async()=>{
   const raw=JSON.parse(await readFile(new URL('../data/stations.json',import.meta.url),'utf8'));
   const rows=stationRows(raw.stations);assert.ok(rows.length>0&&rows.length<=2000);
-  const allowed=['callsign','name','country','lat','lon','location_source','place'];
+  const allowed=['callsign','prefix','challenge_group','name','country','lat','lon','location_source','place'];
   for(const row of raw.stations)assert.ok(Object.keys(row).every(key=>allowed.includes(key)));
   assert.ok(!/slack_user|slack_team|access.key|cookie|token|recording|10\.100\.5\./i.test(JSON.stringify(raw)));
   assert.equal(new Set(rows.map(s=>s.callsign)).size,rows.length);

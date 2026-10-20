@@ -1,0 +1,97 @@
+{
+  "reference": {
+    "callsign": "AU16",
+    "lat": -19.31902,
+    "lon": 146.79016
+  },
+  "rows": [
+    {
+      "callsign": "AL1",
+      "prefix": "AL",
+      "challenge_group": "3GNS1",
+      "lat": 16.94856,
+      "lon": -64.54985,
+      "grid_6": "FK76rw",
+      "grid_4": "FK76",
+      "distance_km": 16697,
+      "bearing_deg": 89
+    },
+    {
+      "callsign": "AS1",
+      "prefix": "AS",
+      "challenge_group": "SSB",
+      "lat": 47.59429,
+      "lon": -64.83649,
+      "grid_6": "FN77no",
+      "grid_4": "FN77",
+      "distance_km": 15771,
+      "bearing_deg": 35
+    },
+    {
+      "callsign": "AT1",
+      "prefix": "AT",
+      "challenge_group": "SSB",
+      "lat": 35.26275,
+      "lon": -116.68483,
+      "grid_6": "DM15pg",
+      "grid_4": "DM15",
+      "distance_km": 11806,
+      "bearing_deg": 58
+    },
+    {
+      "callsign": "AU1",
+      "prefix": "AU",
+      "challenge_group": "SSB",
+      "lat": -42.8826,
+      "lon": 147.32573,
+      "grid_6": "QE37pc",
+      "grid_4": "QE37",
+      "distance_km": 2621,
+      "bearing_deg": 179
+    },
+    {
+      "callsign": "AU16",
+      "prefix": "AU",
+      "challenge_group": "3GNS1",
+      "lat": -19.31902,
+      "lon": 146.79016,
+      "grid_6": "QH30jq",
+      "grid_4": "QH30",
+      "distance_km": 0,
+      "bearing_deg": 0
+    },
+    {
+      "callsign": "CA1",
+      "prefix": "CA",
+      "challenge_group": "SSB",
+      "lat": 63.74947,
+      "lon": -68.52187,
+      "grid_6": "FP53rr",
+      "grid_4": "FP53",
+      "distance_km": 14410,
+      "bearing_deg": 19
+    },
+    {
+      "callsign": "NZ1",
+      "prefix": "NZ",
+      "challenge_group": "SSB",
+      "lat": -41.14316,
+      "lon": 175.04437,
+      "grid_6": "RE78mu",
+      "grid_4": "RE78",
+      "distance_km": 3611,
+      "bearing_deg": 138
+    },
+    {
+      "callsign": "US1",
+      "prefix": "US",
+      "challenge_group": "2GNS1",
+      "lat": 41.99566,
+      "lon": -87.69193,
+      "grid_6": "EN61dx",
+      "grid_4": "EN61",
+      "distance_km": 14340,
+      "bearing_deg": 51
+    }
+  ]
+}

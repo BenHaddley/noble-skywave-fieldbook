@@ -4,7 +4,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {stationRows,upsertStation} from '../assets/core.js';
 
-const fields=new Set(['callsign','name','country','place','lat','lon','location_source']);
+const fields=new Set(['callsign','prefix','challenge_group','name','country','place','lat','lon','location_source']);
 const canonical=station=>JSON.stringify(Object.entries(stationRows([station])[0]).sort(([a],[b])=>a.localeCompare(b)));
 function checkedStation(station){
   if(!station||typeof station!=='object'||Array.isArray(station)||Object.keys(station).some(k=>!fields.has(k)))throw new Error('Station requests contain map fields only');

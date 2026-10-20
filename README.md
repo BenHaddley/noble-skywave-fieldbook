@@ -2,9 +2,11 @@
 
 A public, static Noble Skywave 2026 station map and HF planning fieldbook, prepared by NZ1 for participating teams. Independent community tool; not an official exercise service.
 
+The main view presents **NS26_Station_Grids.xlsx** as a map with a station sidebar and a sortable full table. It carries the workbook's callsign, prefix, challenge group, coordinates, 4-/6-character grids and distance/bearing columns. AU16 is the default distance reference, matching the spreadsheet; choose another registered callsign or your saved station to recalculate the path. This reference does not change your on-air identity or radio settings.
+
 ## Included
 
-- Search 430 registered stations by callsign, country and imported name. Filter unworked stations; sort by distance or longest path.
+- Search stations by callsign, prefix, challenge group, town or grid. Filter prefixes/groups/unworked stations; sort by distance or longest path. Marker colour identifies SSB, 2G or 3G challenge families.
 - Add and edit callsigns, team names, countries and positions. Station rows show signed coordinates and Maidenhead locators; search also matches town/location names and grids. Enter decimal degrees, use a grid-square centre, or pick a point on the map.
 - Save edits locally or open a shared update request on GitHub. A maintainer approves shared changes; the site republishes the reviewed roster automatically.
 - Set your own station, signed decimal coordinates and Australian/NZ/UTC display time zone.
@@ -16,11 +18,12 @@ A public, static Noble Skywave 2026 station map and HF planning fieldbook, prepa
 - Manual links to VOACAP, Bureau GRAFEX and public SDR directories; circuit-coordinate copy tool.
 - Half-wave inverted-V dimensions in feet or metres, scaled schematic, included angle and insulated-end assumption.
 - Filtered station export to CSV, GeoJSON and static KML placemarks for TAK/GIS. No claim of a native SitaWare package or live TAK feed.
+- Exports include the worksheet fields and selected distance reference; grids and path values are computed from current coordinates rather than stored as stale AU16 measurements.
 - Local backup/restore and contact/channel CSV exports.
 
 ## Data and privacy
 
-`data/stations.json` is a **dated registration snapshot**, not live availability or surveyed positions. The user explicitly approved public release of the registered callsigns and positions. Only callsign, country inferred from callsign prefix, coordinates and position provenance are included. No Slack content, personal names, cookies, recordings, access keys, private radio addresses or station credentials are included. Unknown callsign-country mappings remain “Unspecified”.
+`data/stations.json` starts from a **dated registration snapshot**, not live availability or surveyed positions, and includes reviewed operator updates. The user explicitly approved public release of the roster. Prefixes and challenge groups came from the 430-row `NS26_Station_Grids.xlsx` workbook supplied on 20 October 2026. Current positions and reviewed corrections are retained, including NZ1's corrected Trentham position. The initial roster excludes Slack content, personal names, cookies, recordings, access keys, private radio addresses and station credentials. Unknown callsign-country mappings remain “Unspecified”.
 
 Imported channel plans, home settings, notes, local station edits and contact records stay in `localStorage` on the visitor's browser. Back them up before clearing browser data or switching devices. Downloads and backups are user-triggered. Shared updates open a GitHub issue draft containing only the station's public map fields and previous map record; the visitor must finish submitting it on GitHub. Contact logs and frequency permissions are excluded. OpenStreetMap receives tile requests and NOAA receives weather requests. No analytics are installed.
 
@@ -57,10 +60,12 @@ Review one request at a time; GitHub serializes Pages deployments. A changed/sta
 Station CSV/JSON fields:
 
 ```csv
-callsign,name,country,place,lat,lon,location_source
+callsign,prefix,challenge_group,name,country,place,lat,lon,location_source
 ```
 
 GeoJSON imports accept Point features with callsign/name/country properties. Coordinates use `[longitude, latitude]`. Duplicate callsigns, malformed CSV, missing coordinates and out-of-range positions reject the whole import.
+
+Challenge group is an editable registration field, not a claim about a live radio connection. The full table and map share the same filters; selecting a table callsign locates it on the map. Radio-check planning and weather remain available in the expandable section below the directory.
 
 Channel CSV/JSON fields (download an empty template from Channel book):
 

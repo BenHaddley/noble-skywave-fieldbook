@@ -134,7 +134,9 @@ export function stationRows(rows) {
   return rows.map((r,i)=>{
     const call=callsign(r.callsign??r.call_sign??r.team);
     if(seen.has(call))throw new Error(`Duplicate callsign ${call}`);seen.add(call);
-    return {callsign:call,name:String(r.name??call).slice(0,120),country:String(r.country??'Unspecified').slice(0,60),
+    return {callsign:call,prefix:call.match(/^[A-Z]+/)?.[0]??'Other',
+      ...(r.challenge_group!=null?{challenge_group:String(r.challenge_group).trim().toUpperCase().slice(0,32)}:{}),
+      name:String(r.name??call).slice(0,120),country:String(r.country??'Unspecified').slice(0,60),
       lat:coordinate(r.lat??r.latitude,90,`latitude on row ${i+1}`),lon:coordinate(r.lon??r.lng??r.longitude,180,`longitude on row ${i+1}`),
       location_source:String(r.location_source??'Imported position; not verified').slice(0,150),
       ...(r.place?{place:String(r.place).trim().slice(0,120)}:{})};
@@ -164,6 +166,16 @@ export function upsertStation(rows,input,original=null) {
 export function stationProposal(station,previous=null) {
   return {version:1,action:previous?'update':'add',original_callsign:previous?.callsign??null,
     previous_station:previous?stationRows([previous])[0]:null,station:stationRows([station])[0]};
+}
+export function challengeFamily(station){
+  const group=station.challenge_group??'';
+  return group==='SSB'?'SSB':group.startsWith('2G')?'2G':group.startsWith('3G')?'3G':'Unassigned';
+}
+export function sheetRow(station,reference=null){
+  const grid=locator(station),deg=reference?bearing(reference,station):null;
+  return {...station,grid_6:grid,grid_4:grid.slice(0,4),reference_callsign:reference?.callsign??'',
+    distance_km:reference?Math.round(distance(reference,station)):null,
+    bearing_deg:reference?(deg==null?0:Math.round(deg)%360):null};
 }
 export function proposalBody(proposal) {
   return 'Station details submitted through Skywave Fieldbook. I intend these details to be public.\n\n'
@@ -222,11 +234,11 @@ export function contactRow(row) {
     readability:optionalNumber(row.readability,'readability',1,5),strength:String(row.strength??'').slice(0,80),result:row.result,
     notes:String(row.notes??'').slice(0,2000),distance_km:optionalNumber(row.distance_km,'distance',0,40050)};
 }
-export function stationExport(rows,format) {
-  const clean=rows.map(s=>({callsign:s.callsign,name:s.name,country:s.country,place:s.place??'',lat:s.lat,lon:s.lon,location_source:s.location_source}));
-  if(format==='csv')return {type:'text/csv;charset=utf-8',text:csvExport(clean,['callsign','name','country','place','lat','lon','location_source'])};
-  if(format==='geojson')return {type:'application/geo+json',text:JSON.stringify({type:'FeatureCollection',features:clean.map(s=>({type:'Feature',geometry:{type:'Point',coordinates:[s.lon,s.lat]},properties:{callsign:s.callsign,name:s.name,country:s.country,place:s.place,location_source:s.location_source}}))},null,2)};
-  if(format==='kml')return {type:'application/vnd.google-earth.kml+xml',text:'<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Noble Skywave stations</name>'+clean.map(s=>`<Placemark><name>${xml(s.callsign)}</name><description>${xml(s.country+' · '+s.location_source)}</description><Point><coordinates>${s.lon},${s.lat},0</coordinates></Point></Placemark>`).join('')+'</Document></kml>'};
+export function stationExport(rows,format,reference=null) {
+  const clean=rows.map(s=>sheetRow({callsign:s.callsign,prefix:s.prefix??s.callsign.match(/^[A-Z]+/)?.[0]??'Other',challenge_group:s.challenge_group??'',name:s.name,country:s.country,place:s.place??'',lat:s.lat,lon:s.lon,location_source:s.location_source},reference));
+  if(format==='csv')return {type:'text/csv;charset=utf-8',text:csvExport(clean,['callsign','prefix','challenge_group','lat','lon','grid_6','grid_4','distance_km','bearing_deg','reference_callsign','name','country','place','location_source'])};
+  if(format==='geojson')return {type:'application/geo+json',text:JSON.stringify({type:'FeatureCollection',features:clean.map(({lat,lon,...properties})=>({type:'Feature',geometry:{type:'Point',coordinates:[lon,lat]},properties}))},null,2)};
+  if(format==='kml')return {type:'application/vnd.google-earth.kml+xml',text:'<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Noble Skywave stations</name>'+clean.map(s=>`<Placemark><name>${xml(s.callsign)}</name><description>${xml(s.country+' · '+s.location_source)}</description><ExtendedData>${['prefix','challenge_group','grid_6','grid_4','reference_callsign','distance_km','bearing_deg','place'].map(key=>`<Data name="${key}"><value>${xml(s[key]??'')}</value></Data>`).join('')}</ExtendedData><Point><coordinates>${s.lon},${s.lat},0</coordinates></Point></Placemark>`).join('')+'</Document></kml>'};
   throw new Error('Unknown export format');
 }
 export function antennaDimensions(freq,angle) {
