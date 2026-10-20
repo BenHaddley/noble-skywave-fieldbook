@@ -1,0 +1,7 @@
+{
+  "name": "skywave-fieldbook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node tests/core.test.mjs", "check": "node --check assets/app.js"}
+}
