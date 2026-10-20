@@ -136,8 +136,38 @@ export function stationRows(rows) {
     if(seen.has(call))throw new Error(`Duplicate callsign ${call}`);seen.add(call);
     return {callsign:call,name:String(r.name??call).slice(0,120),country:String(r.country??'Unspecified').slice(0,60),
       lat:coordinate(r.lat??r.latitude,90,`latitude on row ${i+1}`),lon:coordinate(r.lon??r.lng??r.longitude,180,`longitude on row ${i+1}`),
-      location_source:String(r.location_source??'Imported position; not verified').slice(0,150)};
+      location_source:String(r.location_source??'Imported position; not verified').slice(0,150),
+      ...(r.place?{place:String(r.place).trim().slice(0,120)}:{})};
   });
+}
+export function locator(point) {
+  let x=Math.min(359.999999999,Math.max(0,point.lon+180)),y=Math.min(179.999999999,Math.max(0,point.lat+90));
+  const a=Math.floor(x/20),b=Math.floor(y/10);x-=a*20;y-=b*10;
+  const c=Math.floor(x/2),d=Math.floor(y);x-=c*2;y-=d;
+  return String.fromCharCode(65+a,65+b)+c+d+String.fromCharCode(97+Math.floor(x*12),97+Math.floor(y*24));
+}
+export function locatorPosition(value) {
+  const grid=String(value).trim().toUpperCase();
+  if(!/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2})?)?$/.test(grid))throw new Error('Use a 4, 6 or 8 character Maidenhead locator, such as RE88mu');
+  let lon=(grid.charCodeAt(0)-65)*20-180+Number(grid[2])*2,lat=(grid.charCodeAt(1)-65)*10-90+Number(grid[3]);
+  let width=2,height=1;
+  if(grid.length>=6){width/=24;height/=24;lon+=(grid.charCodeAt(4)-65)*width;lat+=(grid.charCodeAt(5)-65)*height;}
+  if(grid.length===8){width/=10;height/=10;lon+=Number(grid[6])*width;lat+=Number(grid[7])*height;}
+  return {lat:lat+height/2,lon:lon+width/2};
+}
+export function upsertStation(rows,input,original=null) {
+  const [station]=stationRows([input]),existing=stationRows(rows);
+  if(original&&!existing.some(s=>s.callsign===original))throw new Error('The station being edited is no longer in this roster');
+  if(existing.some(s=>s.callsign===station.callsign&&s.callsign!==original))throw new Error('That callsign already exists. Select it and choose Edit station.');
+  return stationRows(original?existing.map(s=>s.callsign===original?station:s):[...existing,station]);
+}
+export function stationProposal(station,previous=null) {
+  return {version:1,action:previous?'update':'add',original_callsign:previous?.callsign??null,
+    previous_station:previous?stationRows([previous])[0]:null,station:stationRows([station])[0]};
+}
+export function proposalBody(proposal) {
+  return 'Station details submitted through Skywave Fieldbook. I intend these details to be public.\n\n'
+    +'Please review the callsign and location before publishing.\n\n```json\n'+JSON.stringify(proposal,null,2)+'\n```\n';
 }
 const optionalNumber=(value,label,min,max)=>{
   if(value==null||String(value).trim()==='')return null;
@@ -193,9 +223,9 @@ export function contactRow(row) {
     notes:String(row.notes??'').slice(0,2000),distance_km:optionalNumber(row.distance_km,'distance',0,40050)};
 }
 export function stationExport(rows,format) {
-  const clean=rows.map(s=>({callsign:s.callsign,name:s.name,country:s.country,lat:s.lat,lon:s.lon,location_source:s.location_source}));
-  if(format==='csv')return {type:'text/csv;charset=utf-8',text:csvExport(clean,['callsign','name','country','lat','lon','location_source'])};
-  if(format==='geojson')return {type:'application/geo+json',text:JSON.stringify({type:'FeatureCollection',features:clean.map(s=>({type:'Feature',geometry:{type:'Point',coordinates:[s.lon,s.lat]},properties:{callsign:s.callsign,name:s.name,country:s.country,location_source:s.location_source}}))},null,2)};
+  const clean=rows.map(s=>({callsign:s.callsign,name:s.name,country:s.country,place:s.place??'',lat:s.lat,lon:s.lon,location_source:s.location_source}));
+  if(format==='csv')return {type:'text/csv;charset=utf-8',text:csvExport(clean,['callsign','name','country','place','lat','lon','location_source'])};
+  if(format==='geojson')return {type:'application/geo+json',text:JSON.stringify({type:'FeatureCollection',features:clean.map(s=>({type:'Feature',geometry:{type:'Point',coordinates:[s.lon,s.lat]},properties:{callsign:s.callsign,name:s.name,country:s.country,place:s.place,location_source:s.location_source}}))},null,2)};
   if(format==='kml')return {type:'application/vnd.google-earth.kml+xml',text:'<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Noble Skywave stations</name>'+clean.map(s=>`<Placemark><name>${xml(s.callsign)}</name><description>${xml(s.country+' · '+s.location_source)}</description><Point><coordinates>${s.lon},${s.lat},0</coordinates></Point></Placemark>`).join('')+'</Document></kml>'};
   throw new Error('Unknown export format');
 }

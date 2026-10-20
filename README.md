@@ -5,6 +5,8 @@ A public, static Noble Skywave 2026 station map and HF planning fieldbook, prepa
 ## Included
 
 - Search 430 registered stations by callsign, country and imported name. Filter unworked stations; sort by distance or longest path.
+- Add and edit callsigns, team names, countries and positions. Station rows show signed coordinates and Maidenhead locators; search also matches town/location names and grids. Enter decimal degrees, use a grid-square centre, or pick a point on the map.
+- Save edits locally or open a shared update request on GitHub. A maintainer approves shared changes; the site republishes the reviewed roster automatically.
 - Set your own station, signed decimal coordinates and Australian/NZ/UTC display time zone.
 - Great-circle distance, initial true bearings, short and long path overlays, daylight/greyline preview, UTC solar and civil-twilight events.
 - Local channel book: import your **issued Australian authority list**, explicit dial frequencies, mode, phase, power limits and authority reference. Unknown, wrong-country, wrong-station and expired approvals remain unapproved.
@@ -20,7 +22,7 @@ A public, static Noble Skywave 2026 station map and HF planning fieldbook, prepa
 
 `data/stations.json` is a **dated registration snapshot**, not live availability or surveyed positions. The user explicitly approved public release of the registered callsigns and positions. Only callsign, country inferred from callsign prefix, coordinates and position provenance are included. No Slack content, personal names, cookies, recordings, access keys, private radio addresses or station credentials are included. Unknown callsign-country mappings remain “Unspecified”.
 
-Imported channel plans, home settings, notes and contact records stay in `localStorage` on the visitor's browser. Back them up before clearing browser data or switching devices. Downloads and backups are user-triggered; this site has no upload endpoint. OpenStreetMap receives tile requests and NOAA receives weather requests. No analytics are installed.
+Imported channel plans, home settings, notes, local station edits and contact records stay in `localStorage` on the visitor's browser. Back them up before clearing browser data or switching devices. Downloads and backups are user-triggered. Shared updates open a GitHub issue draft containing only the station's public map fields and previous map record; the visitor must finish submitting it on GitHub. Contact logs and frequency permissions are excluded. OpenStreetMap receives tile requests and NOAA receives weather requests. No analytics are installed.
 
 Only publish an updated shared roster when its release is authorised. Registration positions can be inaccurate; verify with the team. The public site intentionally ships **no Australian frequency approvals**: the restricted Australian spreadsheet was not supplied. The Canadian channel list does not establish Australian authority. CSV import is not CPA/RPA binary conversion.
 
@@ -30,7 +32,7 @@ No build step or npm dependencies are required. Leaflet 1.9.4 is vendored with i
 
 ```sh
 python3 -m http.server 8790 --bind 127.0.0.1
-node tests/core.test.mjs
+npm test
 node --check assets/app.js
 ```
 
@@ -38,16 +40,24 @@ Open `http://127.0.0.1:8790`. This also works under a GitHub Pages repository su
 
 ## GitHub Pages deployment
 
-Publish **this directory only** in its own public repository. Do not push the parent radio-console workspace. Keep `.nojekyll` and serve the root of branch `main` from Settings → Pages → Deploy from a branch.
+Publish **this directory only** in its own public repository. Do not push the parent radio-console workspace. GitHub Pages uses the `Publish Fieldbook` workflow (`.github/workflows/pages.yml`) with source branch `main`. The workflow tests the project, packages only static assets and the public roster, then deploys to the same Pages URL.
 
 The optional `scripts/publish.sh` performs a new-repository deployment using an already authenticated GitHub CLI. It creates a public repository named `noble-skywave-fieldbook` in the signed-in account, pushes only this directory and enables Pages. It refuses an existing Git origin or existing repository name rather than replacing an unrelated site. Credentials belong in the CLI's external configuration, never in this directory.
+
+## Shared station updates
+
+Visitors choose **Add station**, or select a station and choose **Edit station**. **Save on this device** changes their local roster and exports. **Submit shared update** requires explicit public-release consent and opens a GitHub request; visitors submit that request using their GitHub account.
+
+The repository maintainer reviews the proposed callsign and location, then applies the **`publish-station`** label to approve. The workflow independently verifies that the labeller has write/maintain/admin permission, validates the bounded JSON proposal, checks that the original shared entry has not changed, and rejects duplicate callsigns or invalid coordinates. It commits the reviewed roster, runs tests, deploys, then closes the request only after success. Issue text is never evaluated as code or interpolated into shell commands. Action revisions are pinned.
+
+Review one request at a time; GitHub serializes Pages deployments. A changed/stale request or conflicting push fails without overwriting newer data. Refresh and resubmit the request, or remove/reapply the approval label after reviewing it again. Ordinary `station-update` labels do not publish anything. Local edits remain a device roster until the visitor chooses **Restore shared roster**; this does not remove their contact log.
 
 ## Import formats
 
 Station CSV/JSON fields:
 
 ```csv
-callsign,name,country,lat,lon,location_source
+callsign,name,country,place,lat,lon,location_source
 ```
 
 GeoJSON imports accept Point features with callsign/name/country properties. Coordinates use `[longitude, latitude]`. Duplicate callsigns, malformed CSV, missing coordinates and out-of-range positions reject the whole import.

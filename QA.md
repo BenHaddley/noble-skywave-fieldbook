@@ -1,6 +1,6 @@
 # Release checks — 20 October 2026
 
-15 calculation/import/export/permission tests pass (`npm test`). They cover signed NZ coordinates, great-circle and long paths, solar positions, equinox/polar greyline contours, UTC solar events, quoted CSV, invalid imports, longitude-first GeoJSON/KML, spreadsheet formula escaping, exact dial values, country/station/date authority filtering, RX vs two-way results, inverted-V geometry and the public roster field allowlist.
+21 calculation/import/export/permission tests pass (`npm test`). They cover signed NZ coordinates, great-circle and long paths, solar positions, equinox/polar greyline contours, UTC solar events, quoted CSV, invalid imports, longitude-first GeoJSON/KML, spreadsheet formula escaping, exact dial values, country/station/date authority filtering, RX vs two-way results, inverted-V geometry and the public roster field allowlist. Station tests cover adds, edits, renames, collisions, locators, public proposal schema, stale-update rejection and maintainer permission checks.
 
 Chromium checks passed with no JavaScript page errors:
 
@@ -20,3 +20,5 @@ Chromium checks passed with no JavaScript page errors:
 Real NOAA feeds returned current Kp, solar flux and R/S/G observations during the local preview. External links are manual handoffs; no claim is made that VOACAP, a remote SDR or a physical radio has been tested by this site.
 
 GitHub Pages publication is verified separately by the returned Pages build state and an unauthenticated HTTP fetch after publishing.
+
+Station-editor browser checks also passed: callsigns and coordinates visible in the list, added station recovered after refresh, duplicate rename blocked, Maidenhead centre and map-point selection, consent required for a public request, shared draft contains map fields only, a locally renamed station retains its original shared identity, mobile editor fits, and restoring the shared roster removes local edits. GitHub draft destinations were intercepted during these UI checks; no test proposals were submitted by the browser.

@@ -1,10 +1,12 @@
-import {escapeHtml as esc,callsign,coordinate,distance,bearing,greatCircle,darkPolygon,sunElevation,solarEvents,stationRows,channelRows,permission,fileRows,csvExport,stationExport,contactRow,isWorked,RESULT_LABELS,antennaDimensions,EARTH_KM} from './core.js';
+import {escapeHtml as esc,callsign,coordinate,distance,bearing,greatCircle,darkPolygon,sunElevation,solarEvents,stationRows,channelRows,permission,fileRows,csvExport,stationExport,contactRow,isWorked,RESULT_LABELS,antennaDimensions,EARTH_KM} from './core.js?v=station-editor-2';
+import {locator,locatorPosition,upsertStation,stationProposal,proposalBody} from './core.js?v=station-editor-2';
 
 const $=selector=>document.querySelector(selector), $$=selector=>[...document.querySelectorAll(selector)];
 const KEY='skywave-fieldbook-v1', L=window.L;
 const CHANNEL_HEADERS=['channel_id','dial_mhz','centre_mhz','mode','max_power_w','country','authorised','authority','local_callsign','phase','valid_from','valid_to'];
 const LOG_HEADERS=['utc','local_callsign','local_lat','local_lon','callsign','dial_mhz','mode','antenna','power_w','readability','strength','result','distance_km','notes'];
-let state={home:null,stations:null,channels:[],contacts:[],rosterInfo:null}, publicRoster=null, selected=null, activeTab='map', noticeTimer, filePurpose=null;
+let state={home:null,stations:null,stationOrigins:{},channels:[],contacts:[],rosterInfo:null}, publicRoster=null, selected=null, activeTab='map', noticeTimer, filePurpose=null;
+let pickingStation=false,editingSharedOriginal=null;
 let weather=null, weatherBusy=false, skyTime=new Date();
 function validateHome(home){
   if(!home)return null;
@@ -15,7 +17,8 @@ function validateState(raw){
   if(!raw||typeof raw!=='object')throw new Error('Invalid fieldbook backup');
   const home=validateHome(raw.home);
   if(!Array.isArray(raw.contacts)||raw.contacts.length>10000)throw new Error('Invalid contact list; maximum 10,000 entries');
-  return {home,stations:raw.stations==null?null:stationRows(raw.stations),channels:channelRows(raw.channels??[],home?.country),contacts:raw.contacts.map(contactRow),rosterInfo:raw.rosterInfo&&typeof raw.rosterInfo==='object'?{label:String(raw.rosterInfo.label??'Imported roster').slice(0,200),updated_at:String(raw.rosterInfo.updated_at??'').slice(0,40)}:null};
+  const stationOrigins=Object.fromEntries(Object.entries(raw.stationOrigins??{}).map(([key,value])=>[callsign(key),callsign(value)]));
+  return {home,stations:raw.stations==null?null:stationRows(raw.stations),stationOrigins,channels:channelRows(raw.channels??[],home?.country),contacts:raw.contacts.map(contactRow),rosterInfo:raw.rosterInfo&&typeof raw.rosterInfo==='object'?{label:String(raw.rosterInfo.label??'Imported roster').slice(0,200),updated_at:String(raw.rosterInfo.updated_at??'').slice(0,40)}:null};
 }
 try{const saved=localStorage.getItem(KEY);if(saved)state=validateState(JSON.parse(saved));}catch{notice('Saved data could not be read. Restore a fieldbook backup if you have one.',true);}
 function notice(message,error=false){
@@ -32,7 +35,7 @@ function stations(){return state.stations??publicRoster?.stations??[];}
 function worked(call){return state.contacts.some(c=>c.callsign===call&&isWorked(c)&&(!state.home||c.local_callsign===state.home.callsign));}
 function filteredStations(){
   const query=$('#station-search').value.trim().toLowerCase(), country=$('#country-filter').value, unworked=$('#unworked-filter').checked;
-  const rows=stations().filter(s=>(!query||`${s.callsign} ${s.country} ${s.name}`.toLowerCase().includes(query))&&(!country||s.country===country)&&(!unworked||!worked(s.callsign)));
+  const rows=stations().filter(s=>(!query||`${s.callsign} ${s.country} ${s.name} ${s.place??''} ${locator(s)} ${s.lat.toFixed(4)} ${s.lon.toFixed(4)}`.toLowerCase().includes(query))&&(!country||s.country===country)&&(!unworked||!worked(s.callsign)));
   const sort=$('#sort-stations').value;
   rows.sort((a,b)=>state.home&&sort!=='callsign'?(distance(state.home,a)-distance(state.home,b))*(sort==='longest'?-1:1):a.callsign.localeCompare(b.callsign,undefined,{numeric:true}));
   return rows;
@@ -41,17 +44,18 @@ function updateCountryFilter(){
   const previous=$('#country-filter').value;
   $('#country-filter').innerHTML='<option value="">Every country</option>'+[...new Set(stations().map(s=>s.country))].sort().map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
   if([...$('#country-filter').options].some(o=>o.value===previous))$('#country-filter').value=previous;
+  $('#station-countries').innerHTML=[...new Set(['Australia','New Zealand',...stations().map(s=>s.country)])].sort().map(c=>`<option value="${esc(c)}"></option>`).join('');
 }
 function renderRoster(){
   updateCountryFilter();renderStations();
-  $('#roster-count').textContent=`${stations().length.toLocaleString()} registered stations`;
+  $('#roster-count').textContent=`${stations().length.toLocaleString()} station callsigns & locations`;
   const info=state.rosterInfo??publicRoster;
-  $('#roster-date').textContent=state.stations?`${info?.label??'Imported roster'} · stored on this device`:`Registration snapshot ${info?.updated_at?utcLabel(info.updated_at):''} · not live presence`;
+  $('#roster-date').textContent=state.stations?`${info?.label??'Imported roster'} · saved on this device`:`Shared roster ${info?.updated_at?utcLabel(info.updated_at):''} · not live presence`;
 }
 function renderStations(){
   const rows=filteredStations();
   $('#filtered-count').textContent=`${rows.length} OF ${stations().length} STATIONS`;
-  $('#station-list').innerHTML=rows.length?rows.map(s=>`<button class="station-row ${selected?.callsign===s.callsign?'selected':''}" data-station="${esc(s.callsign)}"><span class="flag" aria-hidden="true">${flag(s.country)}</span><span class="station-main"><strong>${esc(s.callsign)}</strong>${s.callsign===state.home?.callsign?'<span class="home-tag">HOME</span>':''}<small>${esc(s.country)}${s.name!==s.callsign?' · '+esc(s.name):''}${worked(s.callsign)?' · ✓ logged contact':''}</small></span><span class="station-distance">${state.home?fmtNumber(distance(state.home,s))+' km':'↗'}</span></button>`).join(''):'<p class="empty-cell">No stations match. Try another callsign or country.</p>';
+  $('#station-list').innerHTML=rows.length?rows.map(s=>`<button class="station-row ${selected?.callsign===s.callsign?'selected':''}" data-station="${esc(s.callsign)}"><span class="flag" aria-hidden="true">${flag(s.country)}</span><span class="station-main"><strong>${esc(s.callsign)}</strong>${s.callsign===state.home?.callsign?'<span class="home-tag">HOME</span>':''}<small>${esc(s.country)}${s.name!==s.callsign?' · '+esc(s.name):''}${worked(s.callsign)?' · ✓ logged contact':''}</small><small class="station-location">${s.place?esc(s.place)+' · ':''}${s.lat.toFixed(4)}, ${s.lon.toFixed(4)} · ${locator(s)}</small></span><span class="station-distance">${state.home?fmtNumber(distance(state.home,s))+' km':'↗'}</span></button>`).join(''):'<p class="empty-cell">No stations match. Try another callsign or country.</p>';
   drawStations(rows);
 }
 const map=L.map('station-map',{worldCopyJump:true,minZoom:1.5,zoomSnap:.25,scrollWheelZoom:false}).setView([-12,145],2);
@@ -64,7 +68,7 @@ function drawStations(rows){
     for(const shift of [-360,0,360]){
       const picked=selected?.callsign===s.callsign;
       const marker=L.circleMarker([s.lat,s.lon+shift],{radius:picked?8:5,weight:picked?3:1.5,color:picked?'#122f36':'#08776c',fillColor:worked(s.callsign)?'#08776c':'#fff',fillOpacity:worked(s.callsign)?1:.65}).addTo(markerLayer);
-      marker.bindTooltip(`${esc(s.callsign)} · ${esc(s.country)}`,{permanent:zoom>=5||picked,direction:'top',className:'station-tooltip'});
+      marker.bindTooltip(`<b>${esc(s.callsign)}</b> · ${esc(s.place||s.country)}<br>${s.lat.toFixed(4)}, ${s.lon.toFixed(4)} · ${locator(s)}`,{permanent:zoom>=5||picked,direction:'top',className:'station-tooltip'});
       marker.on('click',event=>{L.DomEvent.stopPropagation(event);selectStation(s.callsign);});
     }
   }
@@ -121,7 +125,8 @@ function renderCircuit(){
     const day=skyTime.toISOString().slice(0,10),a=solarEvents(home,day),b=solarEvents(selected,day);
     solar=`<div class="circuit-bottom"><div><h3>Sun &amp; twilight · ${esc(day)} UTC</h3><table class="solar-table"><thead><tr><th></th><th>${esc(home.callsign)}</th><th>${esc(selected.callsign)}</th></tr></thead><tbody>${[['dawn','Civil dawn'],['sunrise','Sunrise'],['sunset','Sunset'],['dusk','Civil dusk']].map(([key,label])=>`<tr><td>${label}</td><td>${eventCell(a[key])}</td><td>${eventCell(b[key])}</td></tr>`).join('')}</tbody></table><p>Approximate solar geometry; terrain is not included. Events fall within the displayed UTC date.</p></div><div><h3>24-hour solar elevation</h3>${solarPlot(home,selected)}<p>Solid teal = home · dotted dark = remote · shading = sun below horizon.</p><h3>Previous results on this path</h3>${last.length?last.slice(0,3).map(c=>`<p><b>${esc(utcLabel(c.utc))}</b> · ${fmtFreq(c.dial_mhz)} ${esc(c.mode)} · ${esc(c.antenna||'antenna unreported')} · ${esc(RESULT_LABELS[c.result])}${c.readability?' · R'+c.readability:''}</p>`).join(''):'<p>No checks logged yet. Save the time, channel and antenna after your first attempt.</p>'}</div></div>`;
   }
-  $('#circuit').innerHTML=`<div class="circuit-head"><div><span class="eyebrow">${home?esc(home.callsign)+' → ':''}${esc(selected.country).toUpperCase()}</span><h2>${flag(selected.country)} ${esc(selected.callsign)}</h2><p>${selected.lat.toFixed(4)}, ${selected.lon.toFixed(4)} · ${esc(selected.location_source)}</p></div><div class="inline"><button class="text-button" id="selected-as-home">Use as my station</button><button class="text-button" id="selected-link">Copy station link</button><button class="button button-light" id="selected-log">Log check</button><button class="button button-dark" id="selected-sked">Agree a check ↗</button></div></div>${home?`<div class="metrics"><div class="metric"><b>${fmtNumber(dist)} km</b><span>Short path · great-circle distance</span></div><div class="metric"><b>${bearingFrom==null?'—':Math.round(bearingFrom)+'°'} / ${bearingFrom==null?'—':Math.round((bearingFrom+180)%360)+'°'}</b><span>Short / long path · initial true bearings</span></div><div class="metric"><b>${fmtNumber(2*Math.PI*EARTH_KM-dist)} km</b><span>Long path · not a predicted usable path</span></div><div class="metric"><b>${sunState(home)} / ${sunState(selected)}</b><span>Home / remote at ${skyTime.toISOString().slice(11,16)}Z</span></div></div>${solar}`:'<p>Set your station above to calculate distance, true bearings, daylight and twilight for both ends.</p>'}`;
+  $('#circuit').innerHTML=`<div class="circuit-head"><div><span class="eyebrow">${home?esc(home.callsign)+' → ':''}${esc(selected.country).toUpperCase()}</span><h2>${flag(selected.country)} ${esc(selected.callsign)}</h2><p>${selected.place?esc(selected.place)+' · ':''}${selected.lat.toFixed(4)}, ${selected.lon.toFixed(4)} · ${locator(selected)} · ${esc(selected.location_source)}</p></div><div class="inline"><button class="button button-light" id="selected-edit">Edit station</button><button class="text-button" id="selected-as-home">Use as my station</button><button class="text-button" id="selected-link">Copy station link</button><button class="button button-light" id="selected-log">Log check</button><button class="button button-dark" id="selected-sked">Agree a check ↗</button></div></div>${home?`<div class="metrics"><div class="metric"><b>${fmtNumber(dist)} km</b><span>Short path · great-circle distance</span></div><div class="metric"><b>${bearingFrom==null?'—':Math.round(bearingFrom)+'°'} / ${bearingFrom==null?'—':Math.round((bearingFrom+180)%360)+'°'}</b><span>Short / long path · initial true bearings</span></div><div class="metric"><b>${fmtNumber(2*Math.PI*EARTH_KM-dist)} km</b><span>Long path · not a predicted usable path</span></div><div class="metric"><b>${sunState(home)} / ${sunState(selected)}</b><span>Home / remote at ${skyTime.toISOString().slice(11,16)}Z</span></div></div>${solar}`:'<p>Set your station above to calculate distance, true bearings, daylight and twilight for both ends.</p>'}`;
+  $('#selected-edit').onclick=()=>openStationEditor(selected);
   $('#selected-as-home').onclick=()=>openHome(selected);
   $('#selected-link').onclick=()=>copy(location.href);
   $('#selected-log').onclick=()=>openContact(selected.callsign);
@@ -139,6 +144,67 @@ function openHome(station=null){
   form.elements.lat.value=home?.lat??'';form.elements.lon.value=home?.lon??'';form.elements.zone.value=state.home?.zone??'Australia/Sydney';
   $('#home-dialog').showModal();
 }
+function editorError(message=''){
+  $('#station-editor-error').textContent=message;$('#station-editor-error').hidden=!message;
+}
+function openStationEditor(station=null){
+  if(pickingStation)endPick();
+  const form=$('#station-form');form.reset();editorError();
+  editingSharedOriginal=station?publicRoster?.stations.find(s=>s.callsign===(state.stationOrigins[station.callsign]??station.callsign))??null:null;
+  $('#station-editor-title').textContent=station?'Edit station':'Add station';
+  for(const key of ['callsign','name','country','place','lat','lon'])form.elements[key].value=station?.[key]??(key==='country'?state.home?.country??'Australia':'');
+  form.elements.original_callsign.value=station?.callsign??'';
+  form.elements.locator.value=station?locator(station):'';
+  $('#station-dialog').showModal();
+}
+function stationDraft(){
+  const raw=Object.fromEntries(new FormData($('#station-form')));
+  return stationRows([{...raw,name:raw.name.trim()||raw.callsign,location_source:'Operator-reported location; not independently verified'}])[0];
+}
+function saveStationDraft(station){
+  const form=$('#station-form'),original=form.elements.original_callsign.value||null;
+  const rows=upsertStation(stations(),station,original),origins={...state.stationOrigins};
+  if(original)delete origins[original];if(editingSharedOriginal)origins[station.callsign]=editingSharedOriginal.callsign;
+  const previous=state;
+  state={...state,stations:rows,stationOrigins:origins,rosterInfo:{label:'Edited station roster',updated_at:new Date().toISOString()}};
+  if(!persist()){state=previous;return false;}
+  $('#station-search').value=station.callsign;$('#country-filter').value='';$('#unworked-filter').checked=false;
+  renderRoster();selectStation(station.callsign);renderLog();return true;
+}
+$('#station-form').onsubmit=event=>{
+  event.preventDefault();editorError();
+  try{if(saveStationDraft(stationDraft())){$('#station-dialog').close();notice('Station saved on this device. Use Submit shared update to request a change for everyone.');}}
+  catch(error){editorError(error.message);}
+};
+$('#station-submit-shared').onclick=()=>{
+  const form=$('#station-form');editorError();if(!form.reportValidity())return;
+  if(!form.elements.public_consent.checked){editorError('Confirm that you intend these details to be public before opening a shared request.');return;}
+  if(!publicRoster){editorError('The shared roster is unavailable. Retry once it loads before submitting a shared update.');return;}
+  try{
+    const station=stationDraft(),known=editingSharedOriginal??publicRoster.stations.find(s=>s.callsign===station.callsign)??null;
+    const proposal=stationProposal(station,known),url=new URL('https://github.com/BenHaddley/noble-skywave-fieldbook/issues/new');
+    url.search=new URLSearchParams({template:'station-update.md',title:`Station ${proposal.action}: ${known&&known.callsign!==station.callsign?known.callsign+' → ':''}${station.callsign}`,labels:'station-update',body:proposalBody(proposal)}).toString();
+    if(!saveStationDraft(station))return;
+    window.open(url.href,'_blank','noopener,noreferrer');$('#station-dialog').close();
+    notice('Saved on this device. Finish submitting the GitHub request; a maintainer will review it before publishing.');
+  }catch(error){editorError(error.message);}
+};
+$('#station-from-locator').onclick=()=>{
+  editorError();try{const point=locatorPosition($('#station-form').elements.locator.value);for(const key of ['lat','lon'])$('#station-form').elements[key].value=point[key].toFixed(6);}
+  catch(error){editorError(error.message);}
+};
+$('#station-pick-map').onclick=()=>{
+  pickingStation=true;$('#station-dialog').close();goTab('map');$('#station-pick-banner').hidden=false;
+  $('#station-map').style.cursor='crosshair';$('#station-pick-banner').scrollIntoView({behavior:'smooth',block:'start'});
+};
+function endPick(){pickingStation=false;$('#station-pick-banner').hidden=true;$('#station-map').style.cursor='';}
+$('#cancel-pick').onclick=()=>{endPick();$('#station-dialog').showModal();};
+map.on('click',event=>{
+  if(!pickingStation)return;const point=event.latlng.wrap(),form=$('#station-form');
+  form.elements.lat.value=point.lat.toFixed(6);form.elements.lon.value=point.lng.toFixed(6);
+  form.elements.locator.value=locator({lat:point.lat,lon:point.lng});endPick();$('#station-dialog').showModal();
+});
+$('#add-station').onclick=()=>openStationEditor();
 $('#home-form').onsubmit=event=>{
   event.preventDefault();try{const home=validateHome(Object.fromEntries(new FormData(event.currentTarget)));state.home=home;persist();$('#home-dialog').close();renderHome();notice('Home station saved on this device.');}catch(error){notice(error.message,true);}
 };
@@ -209,7 +275,7 @@ $('#file-input').onchange=async event=>{
       if(purpose==='stations'){
         const imported=stationRows(rows);
         if(!imported.length)throw new Error('No station positions found');
-        state.stations=imported;state.rosterInfo={label:file.name,updated_at:new Date().toISOString()};selected=null;
+        state.stations=imported;state.stationOrigins={};state.rosterInfo={label:file.name,updated_at:new Date().toISOString()};selected=null;
         $('#circuit').innerHTML='<p>Select a station from the imported roster.</p>';
       }else state.channels=channelRows(rows,state.home?.country??'Australia');
     }
@@ -265,7 +331,7 @@ for(const id of ['station-search','country-filter','unworked-filter','sort-stati
 $('#fit-stations').onclick=()=>{const rows=filteredStations();if(rows.length)map.fitBounds(L.latLngBounds(rows.map(s=>[s.lat,s.lon])),{padding:[25,25],maxZoom:7});};
 $('#time-offset').oninput=()=>{drawSky();renderCircuit();};$('#time-live').onclick=()=>{$('#time-offset').value=0;drawSky();renderCircuit();};
 $('#import-stations').onclick=()=>chooseFile('stations');$('#import-channels').onclick=()=>chooseFile('channels');$('#restore-backup').onclick=()=>chooseFile('backup');
-$('#restore-roster').onclick=()=>{if(!publicRoster){notice('Shared roster is still unavailable; try refreshing the page.',true);return;}state.stations=null;state.rosterInfo=null;persist();selected=null;pathLayer.clearLayers();$('#circuit').innerHTML='<p>Select a station to plan a circuit.</p>';renderRoster();notice('Shared registration snapshot restored.');};
+$('#restore-roster').onclick=()=>{if(!publicRoster){notice('Shared roster is still unavailable; try refreshing the page.',true);return;}state.stations=null;state.stationOrigins={};state.rosterInfo=null;persist();selected=null;pathLayer.clearLayers();$('#circuit').innerHTML='<p>Select a station to plan a circuit.</p>';renderRoster();notice('Shared registration snapshot restored.');};
 $$('[data-export]').forEach(button=>button.onclick=()=>exportStations(button.dataset.export));
 $('#backup').onclick=backup;$('#backup-tools').onclick=backup;$('#print').onclick=()=>window.print();
 $('#add-contact').onclick=()=>openContact();$('#log-search').oninput=renderLog;

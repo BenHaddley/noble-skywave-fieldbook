@@ -1,0 +1,65 @@
+name: Publish Fieldbook
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  issues:
+    types: [labeled]
+
+concurrency:
+  group: skywave-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event_name != 'issues' || github.event.label.name == 'publish-station'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      issues: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out trusted main branch
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+      - name: Validate maintainer approval and station request
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/station-updates.mjs
+      - name: Test calculations, editor and reviewed updates
+        run: npm test && npm run check
+      - name: Save reviewed roster change
+        if: github.event_name == 'issues'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/stations.json
+          git commit -m 'Publish reviewed station update'
+          git push origin HEAD:main
+      - name: Prepare public files
+        run: node scripts/build-site.mjs
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - name: Upload public site
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: _site
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+      - name: Close published request after successful deployment
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/station-updates.mjs --complete
