@@ -1,8 +1,8 @@
 {
   "title": "Noble Skywave registered stations",
   "source": "Registered station map, nobleskywave.ca/map-info. Shared by NZ1 with operator approval.",
-  "updated_at": "2026-10-20T00:12:43.790908+00:00",
-  "note": "Snapshot, not live presence. Positions are supplied by participants and may be approximate or incorrect. Confirm with the team.",
+  "updated_at": "2026-10-20T00:44:13.813Z",
+  "note": "Shared roster: registered positions and reviewed operator updates. Not live presence; confirm locations with the teams.",
   "stations": [
     {
       "callsign": "AL1",
@@ -34,6 +34,70 @@
       "country": "Australia",
       "lat": -42.882603,
       "lon": 147.32573,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU2",
+      "name": "AU2",
+      "country": "Australia",
+      "lat": -42.882603,
+      "lon": 147.32573,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU3",
+      "name": "AU3",
+      "country": "Australia",
+      "lat": -42.896449,
+      "lon": 147.235446,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU4",
+      "name": "AU4",
+      "country": "Australia",
+      "lat": -32.15163,
+      "lon": 116.012719,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU5",
+      "name": "AU5",
+      "country": "Australia",
+      "lat": -27.302356,
+      "lon": 152.973183,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU6",
+      "name": "AU6",
+      "country": "Australia",
+      "lat": -19.319545,
+      "lon": 146.769741,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU7",
+      "name": "AU7",
+      "country": "Australia",
+      "lat": -19.325509,
+      "lon": 146.792776,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU8",
+      "name": "AU8",
+      "country": "Australia",
+      "lat": -33.973196,
+      "lon": 150.956917,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "AU9",
+      "name": "AU9",
+      "country": "Australia",
+      "lat": -27.425944,
+      "lon": 152.985984,
       "location_source": "Reported registration position"
     },
     {
@@ -117,75 +181,11 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "AU2",
-      "name": "AU2",
-      "country": "Australia",
-      "lat": -42.882603,
-      "lon": 147.32573,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "AU20",
       "name": "AU20",
       "country": "Australia",
       "lat": -35.349562,
       "lon": 149.201776,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "AU3",
-      "name": "AU3",
-      "country": "Australia",
-      "lat": -42.896449,
-      "lon": 147.235446,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "AU4",
-      "name": "AU4",
-      "country": "Australia",
-      "lat": -32.15163,
-      "lon": 116.012719,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "AU5",
-      "name": "AU5",
-      "country": "Australia",
-      "lat": -27.302356,
-      "lon": 152.973183,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "AU6",
-      "name": "AU6",
-      "country": "Australia",
-      "lat": -19.319545,
-      "lon": 146.769741,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "AU7",
-      "name": "AU7",
-      "country": "Australia",
-      "lat": -19.325509,
-      "lon": 146.792776,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "AU8",
-      "name": "AU8",
-      "country": "Australia",
-      "lat": -33.973196,
-      "lon": 150.956917,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "AU9",
-      "name": "AU9",
-      "country": "Australia",
-      "lat": -27.425944,
-      "lon": 152.985984,
       "location_source": "Reported registration position"
     },
     {
@@ -234,6 +234,70 @@
       "country": "Canada",
       "lat": 63.749466,
       "lon": -68.521866,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA2",
+      "name": "CA2",
+      "country": "Canada",
+      "lat": 44.26765,
+      "lon": -81.54352,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA3",
+      "name": "CA3",
+      "country": "Canada",
+      "lat": 43.844933,
+      "lon": -74.998448,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA4",
+      "name": "CA4",
+      "country": "Canada",
+      "lat": 48.426594,
+      "lon": -123.36747,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA5",
+      "name": "CA5",
+      "country": "Canada",
+      "lat": 53.526896,
+      "lon": -113.346867,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA6",
+      "name": "CA6",
+      "country": "Canada",
+      "lat": 48.429927,
+      "lon": -123.412773,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA7",
+      "name": "CA7",
+      "country": "Canada",
+      "lat": 50.026375,
+      "lon": -125.24511,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA8",
+      "name": "CA8",
+      "country": "Canada",
+      "lat": 53.545918,
+      "lon": -113.561843,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "CA9",
+      "name": "CA9",
+      "country": "Canada",
+      "lat": 44.321766,
+      "lon": -79.724425,
       "location_source": "Reported registration position"
     },
     {
@@ -317,14 +381,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "CA2",
-      "name": "CA2",
-      "country": "Canada",
-      "lat": 44.26765,
-      "lon": -81.54352,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "CA20",
       "name": "CA20",
       "country": "Canada",
@@ -402,14 +458,6 @@
       "country": "Canada",
       "lat": 45.421655,
       "lon": -63.558948,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "CA3",
-      "name": "CA3",
-      "country": "Canada",
-      "lat": 43.844933,
-      "lon": -74.998448,
       "location_source": "Reported registration position"
     },
     {
@@ -493,14 +541,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "CA4",
-      "name": "CA4",
-      "country": "Canada",
-      "lat": 48.426594,
-      "lon": -123.36747,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "CA40",
       "name": "CA40",
       "country": "Canada",
@@ -578,14 +618,6 @@
       "country": "Canada",
       "lat": 43.582524,
       "lon": -42.406731,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "CA5",
-      "name": "CA5",
-      "country": "Canada",
-      "lat": 53.526896,
-      "lon": -113.346867,
       "location_source": "Reported registration position"
     },
     {
@@ -669,14 +701,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "CA6",
-      "name": "CA6",
-      "country": "Canada",
-      "lat": 48.429927,
-      "lon": -123.412773,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "CA60",
       "name": "CA60",
       "country": "Canada",
@@ -754,14 +778,6 @@
       "country": "Canada",
       "lat": 48.436203,
       "lon": -89.226246,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "CA7",
-      "name": "CA7",
-      "country": "Canada",
-      "lat": 50.026375,
-      "lon": -125.24511,
       "location_source": "Reported registration position"
     },
     {
@@ -845,14 +861,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "CA8",
-      "name": "CA8",
-      "country": "Canada",
-      "lat": 53.545918,
-      "lon": -113.561843,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "CA80",
       "name": "CA80",
       "country": "Canada",
@@ -933,14 +941,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "CA9",
-      "name": "CA9",
-      "country": "Canada",
-      "lat": 44.321766,
-      "lon": -79.724425,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "CA90",
       "name": "CA90",
       "country": "Canada",
@@ -986,54 +986,6 @@
       "country": "Germany",
       "lat": 51.694404,
       "lon": 6.600463,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "DE10",
-      "name": "DE10",
-      "country": "Germany",
-      "lat": 51.993448,
-      "lon": 7.956302,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "DE11",
-      "name": "DE11",
-      "country": "Germany",
-      "lat": 52.466133,
-      "lon": 13.159301,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "DE12",
-      "name": "DE12",
-      "country": "Germany",
-      "lat": 52.449908,
-      "lon": 9.438524,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "DE13",
-      "name": "DE13",
-      "country": "Germany",
-      "lat": 49.716103,
-      "lon": 11.90336,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "DE14",
-      "name": "DE14",
-      "country": "Germany",
-      "lat": 49.70017,
-      "lon": 11.919812,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "DE15",
-      "name": "DE15",
-      "country": "Germany",
-      "lat": 51.738255,
-      "lon": 6.291896,
       "location_source": "Reported registration position"
     },
     {
@@ -1101,6 +1053,54 @@
       "location_source": "Reported registration position"
     },
     {
+      "callsign": "DE10",
+      "name": "DE10",
+      "country": "Germany",
+      "lat": 51.993448,
+      "lon": 7.956302,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "DE11",
+      "name": "DE11",
+      "country": "Germany",
+      "lat": 52.466133,
+      "lon": 13.159301,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "DE12",
+      "name": "DE12",
+      "country": "Germany",
+      "lat": 52.449908,
+      "lon": 9.438524,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "DE13",
+      "name": "DE13",
+      "country": "Germany",
+      "lat": 49.716103,
+      "lon": 11.90336,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "DE14",
+      "name": "DE14",
+      "country": "Germany",
+      "lat": 49.70017,
+      "lon": 11.919812,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "DE15",
+      "name": "DE15",
+      "country": "Germany",
+      "lat": 51.738255,
+      "lon": 6.291896,
+      "location_source": "Reported registration position"
+    },
+    {
       "callsign": "DK1",
       "name": "DK1",
       "country": "Denmark",
@@ -1122,62 +1122,6 @@
       "country": "United Kingdom",
       "lat": 53.875197,
       "lon": -0.444607,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "GB10",
-      "name": "GB10",
-      "country": "United Kingdom",
-      "lat": 52.806293,
-      "lon": -2.117623,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "GB11",
-      "name": "GB11",
-      "country": "United Kingdom",
-      "lat": 51.245158,
-      "lon": -1.648154,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "GB12",
-      "name": "GB12",
-      "country": "United Kingdom",
-      "lat": 50.527481,
-      "lon": -4.061421,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "GB13",
-      "name": "GB13",
-      "country": "United Kingdom",
-      "lat": 52.254102,
-      "lon": -1.140752,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "GB14",
-      "name": "GB14",
-      "country": "United Kingdom",
-      "lat": 52.253814,
-      "lon": -1.140932,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "GB15",
-      "name": "GB15",
-      "country": "United Kingdom",
-      "lat": 51.871205,
-      "lon": 0.88427,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "GB16",
-      "name": "GB16",
-      "country": "United Kingdom",
-      "lat": 55.877314,
-      "lon": -3.408784,
       "location_source": "Reported registration position"
     },
     {
@@ -1242,6 +1186,62 @@
       "country": "United Kingdom",
       "lat": 52.806293,
       "lon": -2.117623,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "GB10",
+      "name": "GB10",
+      "country": "United Kingdom",
+      "lat": 52.806293,
+      "lon": -2.117623,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "GB11",
+      "name": "GB11",
+      "country": "United Kingdom",
+      "lat": 51.245158,
+      "lon": -1.648154,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "GB12",
+      "name": "GB12",
+      "country": "United Kingdom",
+      "lat": 50.527481,
+      "lon": -4.061421,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "GB13",
+      "name": "GB13",
+      "country": "United Kingdom",
+      "lat": 52.254102,
+      "lon": -1.140752,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "GB14",
+      "name": "GB14",
+      "country": "United Kingdom",
+      "lat": 52.253814,
+      "lon": -1.140932,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "GB15",
+      "name": "GB15",
+      "country": "United Kingdom",
+      "lat": 51.871205,
+      "lon": 0.88427,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "GB16",
+      "name": "GB16",
+      "country": "United Kingdom",
+      "lat": 55.877314,
+      "lon": -3.408784,
       "location_source": "Reported registration position"
     },
     {
@@ -1466,7 +1466,8 @@
       "country": "New Zealand",
       "lat": -41.1435,
       "lon": 175.0358,
-      "location_source": "Reported registration position"
+      "location_source": "Operator-reported update via GitHub #1; not independently verified",
+      "place": "Trentham, Upper Hutt"
     },
     {
       "callsign": "NZ2",
@@ -1498,6 +1499,70 @@
       "country": "Unspecified",
       "lat": -12.163339,
       "lon": -77.022728,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE2",
+      "name": "PE2",
+      "country": "Unspecified",
+      "lat": -12.14832,
+      "lon": -76.999676,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE3",
+      "name": "PE3",
+      "country": "Unspecified",
+      "lat": -3.932479,
+      "lon": -70.489724,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE4",
+      "name": "PE4",
+      "country": "Unspecified",
+      "lat": -3.568294,
+      "lon": -80.461459,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE5",
+      "name": "PE5",
+      "country": "Unspecified",
+      "lat": -3.574874,
+      "lon": -80.456001,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE6",
+      "name": "PE6",
+      "country": "Unspecified",
+      "lat": -12.022295,
+      "lon": -77.039321,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE7",
+      "name": "PE7",
+      "country": "Unspecified",
+      "lat": -5.197304,
+      "lon": -80.627815,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE8",
+      "name": "PE8",
+      "country": "Unspecified",
+      "lat": -4.899578,
+      "lon": -80.704255,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "PE9",
+      "name": "PE9",
+      "country": "Unspecified",
+      "lat": -17.711069,
+      "lon": -70.84675,
       "location_source": "Reported registration position"
     },
     {
@@ -1581,14 +1646,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "PE2",
-      "name": "PE2",
-      "country": "Unspecified",
-      "lat": -12.14832,
-      "lon": -76.999676,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "PE20",
       "name": "PE20",
       "country": "Unspecified",
@@ -1666,14 +1723,6 @@
       "country": "Unspecified",
       "lat": -12.520279,
       "lon": -73.82804,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "PE3",
-      "name": "PE3",
-      "country": "Unspecified",
-      "lat": -3.932479,
-      "lon": -70.489724,
       "location_source": "Reported registration position"
     },
     {
@@ -1757,14 +1806,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "PE4",
-      "name": "PE4",
-      "country": "Unspecified",
-      "lat": -3.568294,
-      "lon": -80.461459,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "PE40",
       "name": "PE40",
       "country": "Unspecified",
@@ -1834,46 +1875,6 @@
       "country": "Unspecified",
       "lat": -12.037946,
       "lon": -77.144609,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "PE5",
-      "name": "PE5",
-      "country": "Unspecified",
-      "lat": -3.574874,
-      "lon": -80.456001,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "PE6",
-      "name": "PE6",
-      "country": "Unspecified",
-      "lat": -12.022295,
-      "lon": -77.039321,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "PE7",
-      "name": "PE7",
-      "country": "Unspecified",
-      "lat": -5.197304,
-      "lon": -80.627815,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "PE8",
-      "name": "PE8",
-      "country": "Unspecified",
-      "lat": -4.899578,
-      "lon": -80.704255,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "PE9",
-      "name": "PE9",
-      "country": "Unspecified",
-      "lat": -17.711069,
-      "lon": -70.84675,
       "location_source": "Reported registration position"
     },
     {
@@ -1981,91 +1982,67 @@
       "location_source": "Reported registration position"
     },
     {
+      "callsign": "US2",
+      "name": "US2",
+      "country": "United States",
+      "lat": 35.908024,
+      "lon": -80.627582,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US3",
+      "name": "US3",
+      "country": "United States",
+      "lat": 47.088522,
+      "lon": -122.568192,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US4",
+      "name": "US4",
+      "country": "United States",
+      "lat": 35.908009,
+      "lon": -80.627602,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US5",
+      "name": "US5",
+      "country": "United States",
+      "lat": 34.416551,
+      "lon": -103.211538,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US6",
+      "name": "US6",
+      "country": "United States",
+      "lat": 39.109132,
+      "lon": -104.819925,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US7",
+      "name": "US7",
+      "country": "United States",
+      "lat": 45.635393,
+      "lon": -89.407605,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US8",
+      "name": "US8",
+      "country": "United States",
+      "lat": 40.773985,
+      "lon": -111.746291,
+      "location_source": "Reported registration position"
+    },
+    {
       "callsign": "US10",
       "name": "US10",
       "country": "United States",
       "lat": 44.639185,
       "lon": -90.104006,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US100",
-      "name": "US100",
-      "country": "United States",
-      "lat": 61.253582,
-      "lon": -149.695263,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US101",
-      "name": "US101",
-      "country": "United States",
-      "lat": 36.8392,
-      "lon": -84.8447,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US102",
-      "name": "US102",
-      "country": "United States",
-      "lat": 35.158848,
-      "lon": -78.996885,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US103",
-      "name": "US103",
-      "country": "United States",
-      "lat": 61.253494,
-      "lon": -149.695324,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US104",
-      "name": "US104",
-      "country": "United States",
-      "lat": 31.13632,
-      "lon": -97.776695,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US105",
-      "name": "US105",
-      "country": "United States",
-      "lat": 38.852999,
-      "lon": -91.306184,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US106",
-      "name": "US106",
-      "country": "United States",
-      "lat": 48.47442,
-      "lon": -122.8939,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US107",
-      "name": "US107",
-      "country": "United States",
-      "lat": 36.028478,
-      "lon": -83.928272,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US108",
-      "name": "US108",
-      "country": "United States",
-      "lat": 35.296227,
-      "lon": -84.748311,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US109",
-      "name": "US109",
-      "country": "United States",
-      "lat": 33.804438,
-      "lon": -81.89869,
       "location_source": "Reported registration position"
     },
     {
@@ -2077,171 +2054,11 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US110",
-      "name": "US110",
-      "country": "United States",
-      "lat": 37.867496,
-      "lon": -78.323576,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US111",
-      "name": "US111",
-      "country": "United States",
-      "lat": 39.09058,
-      "lon": -76.744416,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US112",
-      "name": "US112",
-      "country": "United States",
-      "lat": 31.554651,
-      "lon": -110.296333,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US113",
-      "name": "US113",
-      "country": "United States",
-      "lat": 39.10821,
-      "lon": -77.241653,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US114",
-      "name": "US114",
-      "country": "United States",
-      "lat": 34.135553,
-      "lon": -116.060167,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US115",
-      "name": "US115",
-      "country": "United States",
-      "lat": 41.499233,
-      "lon": -74.080176,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US116",
-      "name": "US116",
-      "country": "United States",
-      "lat": 31.864024,
-      "lon": -106.347852,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US117",
-      "name": "US117",
-      "country": "United States",
-      "lat": 38.915484,
-      "lon": -94.360361,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US118",
-      "name": "US118",
-      "country": "United States",
-      "lat": 41.277441,
-      "lon": -73.104916,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US119",
-      "name": "US119",
-      "country": "United States",
-      "lat": 44.047513,
-      "lon": -75.789717,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US12",
       "name": "US12",
       "country": "United States",
       "lat": 42.712376,
       "lon": -88.977432,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US120",
-      "name": "US120",
-      "country": "United States",
-      "lat": 47.120879,
-      "lon": -122.615276,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US121",
-      "name": "US121",
-      "country": "United States",
-      "lat": 28.078157,
-      "lon": -81.75774,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US122",
-      "name": "US122",
-      "country": "United States",
-      "lat": 40.341882,
-      "lon": -74.061692,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US123",
-      "name": "US123",
-      "country": "United States",
-      "lat": 39.864829,
-      "lon": -85.993078,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US124",
-      "name": "US124",
-      "country": "United States",
-      "lat": 61.25345,
-      "lon": -149.695316,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US125",
-      "name": "US125",
-      "country": "United States",
-      "lat": 34.604061,
-      "lon": -98.396834,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US126",
-      "name": "US126",
-      "country": "United States",
-      "lat": 39.09058,
-      "lon": -76.744416,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US127",
-      "name": "US127",
-      "country": "United States",
-      "lat": 40.81173,
-      "lon": -82.51328,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US128",
-      "name": "US128",
-      "country": "United States",
-      "lat": 41.655902,
-      "lon": -70.538127,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US129",
-      "name": "US129",
-      "country": "United States",
-      "lat": 47.133966,
-      "lon": -122.597416,
       "location_source": "Reported registration position"
     },
     {
@@ -2253,171 +2070,11 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US130",
-      "name": "US130",
-      "country": "United States",
-      "lat": 38.747902,
-      "lon": -104.788008,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US131",
-      "name": "US131",
-      "country": "United States",
-      "lat": 21.436236,
-      "lon": -157.746147,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US132",
-      "name": "US132",
-      "country": "United States",
-      "lat": 30.211754,
-      "lon": -98.020851,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US133",
-      "name": "US133",
-      "country": "United States",
-      "lat": 43.318503,
-      "lon": -87.951627,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US134",
-      "name": "US134",
-      "country": "United States",
-      "lat": 38.504465,
-      "lon": -90.280493,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US135",
-      "name": "US135",
-      "country": "United States",
-      "lat": 61.270081,
-      "lon": -149.833256,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US136",
-      "name": "US136",
-      "country": "United States",
-      "lat": 38.270428,
-      "lon": -121.939922,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US137",
-      "name": "US137",
-      "country": "United States",
-      "lat": 34.649029,
-      "lon": -77.325324,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US138",
-      "name": "US138",
-      "country": "United States",
-      "lat": 31.519759,
-      "lon": -110.190682,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US139",
-      "name": "US139",
-      "country": "United States",
-      "lat": 38.589135,
-      "lon": -121.303065,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US14",
       "name": "US14",
       "country": "United States",
       "lat": 44.43987,
       "lon": -90.127468,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US140",
-      "name": "US140",
-      "country": "United States",
-      "lat": 38.180689,
-      "lon": -121.709631,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US141",
-      "name": "US141",
-      "country": "United States",
-      "lat": 42.16686,
-      "lon": -121.747744,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US142",
-      "name": "US142",
-      "country": "United States",
-      "lat": 38.270428,
-      "lon": -121.939922,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US143",
-      "name": "US143",
-      "country": "United States",
-      "lat": 37.89999,
-      "lon": -122.061102,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US144",
-      "name": "US144",
-      "country": "United States",
-      "lat": 36.322636,
-      "lon": -119.301079,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US145",
-      "name": "US145",
-      "country": "United States",
-      "lat": 33.821843,
-      "lon": -117.84536,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US146",
-      "name": "US146",
-      "country": "United States",
-      "lat": 40.793305,
-      "lon": -111.954386,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US147",
-      "name": "US147",
-      "country": "United States",
-      "lat": 21.48997,
-      "lon": -158.06772,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US148",
-      "name": "US148",
-      "country": "United States",
-      "lat": 36.299375,
-      "lon": -119.215333,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US149",
-      "name": "US149",
-      "country": "United States",
-      "lat": 38.553542,
-      "lon": -89.912171,
       "location_source": "Reported registration position"
     },
     {
@@ -2429,163 +2086,11 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US150",
-      "name": "US150",
-      "country": "United States",
-      "lat": 29.450022,
-      "lon": -98.437375,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US151",
-      "name": "US151",
-      "country": "United States",
-      "lat": 61.277082,
-      "lon": -149.770604,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US152",
-      "name": "US152",
-      "country": "United States",
-      "lat": 37.6032,
-      "lon": -121.685432,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US153",
-      "name": "US153",
-      "country": "United States",
-      "lat": 38.741716,
-      "lon": -104.755092,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US154",
-      "name": "US154",
-      "country": "United States",
-      "lat": 35.262747,
-      "lon": -116.684831,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US155",
-      "name": "US155",
-      "country": "United States",
-      "lat": 35.262747,
-      "lon": -116.684831,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US156",
-      "name": "US156",
-      "country": "United States",
-      "lat": 37.883621,
-      "lon": -122.253284,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US157",
-      "name": "US157",
-      "country": "United States",
-      "lat": 39.724891,
-      "lon": -77.445753,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US158",
-      "name": "US158",
-      "country": "United States",
-      "lat": 34.660802,
-      "lon": -77.354603,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US159",
-      "name": "US159",
-      "country": "United States",
-      "lat": 33.952284,
-      "lon": -84.549068,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US16",
       "name": "US16",
       "country": "United States",
       "lat": 41.570396,
       "lon": -72.254511,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US161",
-      "name": "US161",
-      "country": "United States",
-      "lat": 33.456761,
-      "lon": -117.6376,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US162",
-      "name": "US162",
-      "country": "United States",
-      "lat": 34.660802,
-      "lon": -77.354603,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US163",
-      "name": "US163",
-      "country": "United States",
-      "lat": 61.2538,
-      "lon": -149.69455,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US164",
-      "name": "US164",
-      "country": "United States",
-      "lat": 33.845027,
-      "lon": -117.942231,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US165",
-      "name": "US165",
-      "country": "United States",
-      "lat": 29.449741,
-      "lon": -98.437428,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US166",
-      "name": "US166",
-      "country": "United States",
-      "lat": 47.095248,
-      "lon": -122.613393,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US167",
-      "name": "US167",
-      "country": "United States",
-      "lat": 34.382214,
-      "lon": -83.796507,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US168",
-      "name": "US168",
-      "country": "United States",
-      "lat": 39.72961,
-      "lon": -77.43255,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US169",
-      "name": "US169",
-      "country": "United States",
-      "lat": 29.459944,
-      "lon": -98.43708,
       "location_source": "Reported registration position"
     },
     {
@@ -2597,86 +2102,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US170",
-      "name": "US170",
-      "country": "United States",
-      "lat": 29.459944,
-      "lon": -98.43708,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US171",
-      "name": "US171",
-      "country": "United States",
-      "lat": 38.270428,
-      "lon": -121.939922,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US172",
-      "name": "US172",
-      "country": "United States",
-      "lat": 46.855292,
-      "lon": -114.076649,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US173",
-      "name": "US173",
-      "country": "United States",
-      "lat": 38.929115,
-      "lon": -104.834115,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US174",
-      "name": "US174",
-      "country": "United States",
-      "lat": 44.92335,
-      "lon": -97.14115,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US175",
-      "name": "US175",
-      "country": "United States",
-      "lat": 39.098485,
-      "lon": -94.578631,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US176",
-      "name": "US176",
-      "country": "United States",
-      "lat": 39.930514,
-      "lon": -105.49979,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US177",
-      "name": "US177",
-      "country": "United States",
-      "lat": 37.548065,
-      "lon": -97.257925,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US178",
-      "name": "US178",
-      "country": "United States",
-      "lat": 47.818293,
-      "lon": -122.154795,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US179",
-      "name": "US179",
-      "country": "United States",
-      "lat": 41.167052,
-      "lon": -74.056399,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US18",
       "name": "US18",
       "country": "United States",
@@ -2685,67 +2110,11 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US180",
-      "name": "US180",
-      "country": "United States",
-      "lat": 61.775433,
-      "lon": -149.726248,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US181",
-      "name": "US181",
-      "country": "United States",
-      "lat": 40.663161,
-      "lon": -89.708387,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US182",
-      "name": "US182",
-      "country": "United States",
-      "lat": 32.74362,
-      "lon": -96.960774,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US183",
-      "name": "US183",
-      "country": "United States",
-      "lat": 47.123978,
-      "lon": -122.519398,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US184",
-      "name": "US184",
-      "country": "United States",
-      "lat": 38.843128,
-      "lon": -94.552154,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US185",
-      "name": "US185",
-      "country": "United States",
-      "lat": 35.164582,
-      "lon": -78.942488,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US19",
       "name": "US19",
       "country": "United States",
       "lat": 47.129476,
       "lon": -122.332908,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US2",
-      "name": "US2",
-      "country": "United States",
-      "lat": 35.908024,
-      "lon": -80.627582,
       "location_source": "Reported registration position"
     },
     {
@@ -2829,14 +2198,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US3",
-      "name": "US3",
-      "country": "United States",
-      "lat": 47.088522,
-      "lon": -122.568192,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US30",
       "name": "US30",
       "country": "United States",
@@ -2914,14 +2275,6 @@
       "country": "United States",
       "lat": 44.040549,
       "lon": -75.746097,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US4",
-      "name": "US4",
-      "country": "United States",
-      "lat": 35.908009,
-      "lon": -80.627602,
       "location_source": "Reported registration position"
     },
     {
@@ -3005,14 +2358,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US5",
-      "name": "US5",
-      "country": "United States",
-      "lat": 34.416551,
-      "lon": -103.211538,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US50",
       "name": "US50",
       "country": "United States",
@@ -3090,14 +2435,6 @@
       "country": "United States",
       "lat": 21.48997,
       "lon": -158.06772,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US6",
-      "name": "US6",
-      "country": "United States",
-      "lat": 39.109132,
-      "lon": -104.819925,
       "location_source": "Reported registration position"
     },
     {
@@ -3181,14 +2518,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "US7",
-      "name": "US7",
-      "country": "United States",
-      "lat": 45.635393,
-      "lon": -89.407605,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "US70",
       "name": "US70",
       "country": "United States",
@@ -3266,14 +2595,6 @@
       "country": "United States",
       "lat": 32.606789,
       "lon": -117.080084,
-      "location_source": "Reported registration position"
-    },
-    {
-      "callsign": "US8",
-      "name": "US8",
-      "country": "United States",
-      "lat": 40.773985,
-      "lon": -111.746291,
       "location_source": "Reported registration position"
     },
     {
@@ -3434,6 +2755,686 @@
       "country": "United States",
       "lat": 35.320574,
       "lon": -78.612142,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US100",
+      "name": "US100",
+      "country": "United States",
+      "lat": 61.253582,
+      "lon": -149.695263,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US101",
+      "name": "US101",
+      "country": "United States",
+      "lat": 36.8392,
+      "lon": -84.8447,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US102",
+      "name": "US102",
+      "country": "United States",
+      "lat": 35.158848,
+      "lon": -78.996885,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US103",
+      "name": "US103",
+      "country": "United States",
+      "lat": 61.253494,
+      "lon": -149.695324,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US104",
+      "name": "US104",
+      "country": "United States",
+      "lat": 31.13632,
+      "lon": -97.776695,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US105",
+      "name": "US105",
+      "country": "United States",
+      "lat": 38.852999,
+      "lon": -91.306184,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US106",
+      "name": "US106",
+      "country": "United States",
+      "lat": 48.47442,
+      "lon": -122.8939,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US107",
+      "name": "US107",
+      "country": "United States",
+      "lat": 36.028478,
+      "lon": -83.928272,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US108",
+      "name": "US108",
+      "country": "United States",
+      "lat": 35.296227,
+      "lon": -84.748311,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US109",
+      "name": "US109",
+      "country": "United States",
+      "lat": 33.804438,
+      "lon": -81.89869,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US110",
+      "name": "US110",
+      "country": "United States",
+      "lat": 37.867496,
+      "lon": -78.323576,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US111",
+      "name": "US111",
+      "country": "United States",
+      "lat": 39.09058,
+      "lon": -76.744416,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US112",
+      "name": "US112",
+      "country": "United States",
+      "lat": 31.554651,
+      "lon": -110.296333,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US113",
+      "name": "US113",
+      "country": "United States",
+      "lat": 39.10821,
+      "lon": -77.241653,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US114",
+      "name": "US114",
+      "country": "United States",
+      "lat": 34.135553,
+      "lon": -116.060167,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US115",
+      "name": "US115",
+      "country": "United States",
+      "lat": 41.499233,
+      "lon": -74.080176,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US116",
+      "name": "US116",
+      "country": "United States",
+      "lat": 31.864024,
+      "lon": -106.347852,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US117",
+      "name": "US117",
+      "country": "United States",
+      "lat": 38.915484,
+      "lon": -94.360361,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US118",
+      "name": "US118",
+      "country": "United States",
+      "lat": 41.277441,
+      "lon": -73.104916,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US119",
+      "name": "US119",
+      "country": "United States",
+      "lat": 44.047513,
+      "lon": -75.789717,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US120",
+      "name": "US120",
+      "country": "United States",
+      "lat": 47.120879,
+      "lon": -122.615276,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US121",
+      "name": "US121",
+      "country": "United States",
+      "lat": 28.078157,
+      "lon": -81.75774,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US122",
+      "name": "US122",
+      "country": "United States",
+      "lat": 40.341882,
+      "lon": -74.061692,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US123",
+      "name": "US123",
+      "country": "United States",
+      "lat": 39.864829,
+      "lon": -85.993078,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US124",
+      "name": "US124",
+      "country": "United States",
+      "lat": 61.25345,
+      "lon": -149.695316,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US125",
+      "name": "US125",
+      "country": "United States",
+      "lat": 34.604061,
+      "lon": -98.396834,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US126",
+      "name": "US126",
+      "country": "United States",
+      "lat": 39.09058,
+      "lon": -76.744416,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US127",
+      "name": "US127",
+      "country": "United States",
+      "lat": 40.81173,
+      "lon": -82.51328,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US128",
+      "name": "US128",
+      "country": "United States",
+      "lat": 41.655902,
+      "lon": -70.538127,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US129",
+      "name": "US129",
+      "country": "United States",
+      "lat": 47.133966,
+      "lon": -122.597416,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US130",
+      "name": "US130",
+      "country": "United States",
+      "lat": 38.747902,
+      "lon": -104.788008,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US131",
+      "name": "US131",
+      "country": "United States",
+      "lat": 21.436236,
+      "lon": -157.746147,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US132",
+      "name": "US132",
+      "country": "United States",
+      "lat": 30.211754,
+      "lon": -98.020851,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US133",
+      "name": "US133",
+      "country": "United States",
+      "lat": 43.318503,
+      "lon": -87.951627,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US134",
+      "name": "US134",
+      "country": "United States",
+      "lat": 38.504465,
+      "lon": -90.280493,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US135",
+      "name": "US135",
+      "country": "United States",
+      "lat": 61.270081,
+      "lon": -149.833256,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US136",
+      "name": "US136",
+      "country": "United States",
+      "lat": 38.270428,
+      "lon": -121.939922,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US137",
+      "name": "US137",
+      "country": "United States",
+      "lat": 34.649029,
+      "lon": -77.325324,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US138",
+      "name": "US138",
+      "country": "United States",
+      "lat": 31.519759,
+      "lon": -110.190682,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US139",
+      "name": "US139",
+      "country": "United States",
+      "lat": 38.589135,
+      "lon": -121.303065,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US140",
+      "name": "US140",
+      "country": "United States",
+      "lat": 38.180689,
+      "lon": -121.709631,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US141",
+      "name": "US141",
+      "country": "United States",
+      "lat": 42.16686,
+      "lon": -121.747744,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US142",
+      "name": "US142",
+      "country": "United States",
+      "lat": 38.270428,
+      "lon": -121.939922,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US143",
+      "name": "US143",
+      "country": "United States",
+      "lat": 37.89999,
+      "lon": -122.061102,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US144",
+      "name": "US144",
+      "country": "United States",
+      "lat": 36.322636,
+      "lon": -119.301079,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US145",
+      "name": "US145",
+      "country": "United States",
+      "lat": 33.821843,
+      "lon": -117.84536,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US146",
+      "name": "US146",
+      "country": "United States",
+      "lat": 40.793305,
+      "lon": -111.954386,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US147",
+      "name": "US147",
+      "country": "United States",
+      "lat": 21.48997,
+      "lon": -158.06772,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US148",
+      "name": "US148",
+      "country": "United States",
+      "lat": 36.299375,
+      "lon": -119.215333,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US149",
+      "name": "US149",
+      "country": "United States",
+      "lat": 38.553542,
+      "lon": -89.912171,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US150",
+      "name": "US150",
+      "country": "United States",
+      "lat": 29.450022,
+      "lon": -98.437375,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US151",
+      "name": "US151",
+      "country": "United States",
+      "lat": 61.277082,
+      "lon": -149.770604,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US152",
+      "name": "US152",
+      "country": "United States",
+      "lat": 37.6032,
+      "lon": -121.685432,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US153",
+      "name": "US153",
+      "country": "United States",
+      "lat": 38.741716,
+      "lon": -104.755092,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US154",
+      "name": "US154",
+      "country": "United States",
+      "lat": 35.262747,
+      "lon": -116.684831,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US155",
+      "name": "US155",
+      "country": "United States",
+      "lat": 35.262747,
+      "lon": -116.684831,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US156",
+      "name": "US156",
+      "country": "United States",
+      "lat": 37.883621,
+      "lon": -122.253284,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US157",
+      "name": "US157",
+      "country": "United States",
+      "lat": 39.724891,
+      "lon": -77.445753,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US158",
+      "name": "US158",
+      "country": "United States",
+      "lat": 34.660802,
+      "lon": -77.354603,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US159",
+      "name": "US159",
+      "country": "United States",
+      "lat": 33.952284,
+      "lon": -84.549068,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US161",
+      "name": "US161",
+      "country": "United States",
+      "lat": 33.456761,
+      "lon": -117.6376,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US162",
+      "name": "US162",
+      "country": "United States",
+      "lat": 34.660802,
+      "lon": -77.354603,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US163",
+      "name": "US163",
+      "country": "United States",
+      "lat": 61.2538,
+      "lon": -149.69455,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US164",
+      "name": "US164",
+      "country": "United States",
+      "lat": 33.845027,
+      "lon": -117.942231,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US165",
+      "name": "US165",
+      "country": "United States",
+      "lat": 29.449741,
+      "lon": -98.437428,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US166",
+      "name": "US166",
+      "country": "United States",
+      "lat": 47.095248,
+      "lon": -122.613393,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US167",
+      "name": "US167",
+      "country": "United States",
+      "lat": 34.382214,
+      "lon": -83.796507,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US168",
+      "name": "US168",
+      "country": "United States",
+      "lat": 39.72961,
+      "lon": -77.43255,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US169",
+      "name": "US169",
+      "country": "United States",
+      "lat": 29.459944,
+      "lon": -98.43708,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US170",
+      "name": "US170",
+      "country": "United States",
+      "lat": 29.459944,
+      "lon": -98.43708,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US171",
+      "name": "US171",
+      "country": "United States",
+      "lat": 38.270428,
+      "lon": -121.939922,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US172",
+      "name": "US172",
+      "country": "United States",
+      "lat": 46.855292,
+      "lon": -114.076649,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US173",
+      "name": "US173",
+      "country": "United States",
+      "lat": 38.929115,
+      "lon": -104.834115,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US174",
+      "name": "US174",
+      "country": "United States",
+      "lat": 44.92335,
+      "lon": -97.14115,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US175",
+      "name": "US175",
+      "country": "United States",
+      "lat": 39.098485,
+      "lon": -94.578631,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US176",
+      "name": "US176",
+      "country": "United States",
+      "lat": 39.930514,
+      "lon": -105.49979,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US177",
+      "name": "US177",
+      "country": "United States",
+      "lat": 37.548065,
+      "lon": -97.257925,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US178",
+      "name": "US178",
+      "country": "United States",
+      "lat": 47.818293,
+      "lon": -122.154795,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US179",
+      "name": "US179",
+      "country": "United States",
+      "lat": 41.167052,
+      "lon": -74.056399,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US180",
+      "name": "US180",
+      "country": "United States",
+      "lat": 61.775433,
+      "lon": -149.726248,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US181",
+      "name": "US181",
+      "country": "United States",
+      "lat": 40.663161,
+      "lon": -89.708387,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US182",
+      "name": "US182",
+      "country": "United States",
+      "lat": 32.74362,
+      "lon": -96.960774,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US183",
+      "name": "US183",
+      "country": "United States",
+      "lat": 47.123978,
+      "lon": -122.519398,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US184",
+      "name": "US184",
+      "country": "United States",
+      "lat": 38.843128,
+      "lon": -94.552154,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US185",
+      "name": "US185",
+      "country": "United States",
+      "lat": 35.164582,
+      "lon": -78.942488,
       "location_source": "Reported registration position"
     },
     {
