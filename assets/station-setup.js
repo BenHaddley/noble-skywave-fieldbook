@@ -1,4 +1,4 @@
-import {callsign,coordinate} from './core.js?v=station-setup-1';
+import {callsign,coordinate} from './core.js?v=map-only-1';
 import tzlookup from './vendor/tz-lookup.js';
 
 export function stationSetup(station){

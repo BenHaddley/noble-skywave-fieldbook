@@ -1,61 +1,36 @@
-# Skywave Fieldbook
+# Noble Skywave station map
 
-A public, static Noble Skywave 2026 station map and HF planning fieldbook, prepared by NZ1 for participating teams. Independent community tool; not an official exercise service.
+A public, searchable map and table of registered Noble Skywave 2026 stations, prepared by NZ1 for participating teams. Independent community project; not an official exercise service.
 
-The main view presents **NS26_Station_Grids.xlsx** as a map with a station sidebar and a sortable full table. It carries the workbook's callsign, prefix, challenge group, coordinates, 4-/6-character grids and distance/bearing columns. AU16 is the default distance reference, matching the spreadsheet; choose another registered callsign or your saved station to recalculate the path. This reference does not change your on-air identity or radio settings.
+The site presents **NS26_Station_Grids.xlsx** as a map with a station sidebar and sortable full table. Both show the workbook's callsign, prefix, challenge group, coordinates, 4-/6-character grids and distance/bearing fields. AU16 is the default distance reference, matching the spreadsheet; choose any registered station or your saved position to recalculate the path.
 
-## Included
+## Features
 
-- Search stations by callsign, prefix, challenge group, town or grid. Filter prefixes/groups/unworked stations; sort by distance or longest path. Marker colour identifies SSB, 2G or 3G challenge families.
-- Add and edit callsigns, team names, countries and positions. Station rows show signed coordinates and Maidenhead locators; search also matches town/location names and grids. Enter decimal degrees, use a grid-square centre, or pick a point on the map.
-- Save edits locally or open a shared update request on GitHub. A maintainer approves shared changes; the site republishes the reviewed roster automatically.
-- Enter a registered callsign to fill country, current coordinates and a suggested local display time zone, or choose “Use as my station” in the map sidebar. Coordinates and zone remain editable; saved corrections are preserved when reopening the form. Unknown callsigns can be entered manually.
-- Great-circle distance, initial true bearings, short and long path overlays, daylight/greyline preview, UTC solar and civil-twilight events.
-- Local channel book: import your **issued Australian authority list**, explicit dial frequencies, mode, phase, power limits and authority reference. Unknown, wrong-country, wrong-station and expired approvals remain unapproved.
-- Copy a useful Slack coordination message with explicit radio dial, mode, UTC date/time and receive-only status. Nothing is posted automatically.
-- Local contact history with antenna, power, readability, strength, waveform, notes and actual outcomes. Receive-only checks never count as confirmed two-way contacts.
-- Timestamped NOAA Kp, solar flux and R/S/G observations. Stale observations are labelled; they are not presented as circuit predictions.
-- Manual links to VOACAP, Bureau GRAFEX and public SDR directories; circuit-coordinate copy tool.
-- Half-wave inverted-V dimensions in feet or metres, scaled schematic, included angle and insulated-end assumption.
-- Filtered station export to CSV, GeoJSON and static KML placemarks for TAK/GIS. No claim of a native SitaWare package or live TAK feed.
-- Exports include the worksheet fields and selected distance reference; grids and path values are computed from current coordinates rather than stored as stale AU16 measurements.
-- Local backup/restore and contact/channel CSV exports.
+- Search callsign, country, prefix, group, place or grid; filter country, prefix and challenge group.
+- Select a station on the map, in the sidebar or in the table to view its details. Copy its direct link to share the same station.
+- Compare great-circle distance and initial true bearing from the selected reference, short/long path overlays and day/night shading.
+- Enter a registered callsign to fill country, coordinates and local display time zone. Saved corrections remain editable.
+- Add/edit callsigns, names, countries, groups and locations. Enter decimal degrees, use a Maidenhead grid centre, or pick on the map.
+- Save corrections locally or submit a shared GitHub update request for maintainer review.
+- Import a station roster and export the filtered set as CSV, GeoJSON or static KML placemarks for TAK/GIS.
+
+The interface is limited to station information. It has no channel book, contact log, radio-check coordination, antenna tools or weather dashboard, and does not poll weather services.
 
 ## Data and privacy
 
-`data/stations.json` starts from a **dated registration snapshot**, not live availability or surveyed positions, and includes reviewed operator updates. The user explicitly approved public release of the roster. Prefixes and challenge groups came from the 430-row `NS26_Station_Grids.xlsx` workbook supplied on 20 October 2026. Current positions and reviewed corrections are retained, including NZ1's corrected Trentham position. The initial roster excludes Slack content, personal names, cookies, recordings, access keys, private radio addresses and station credentials. Unknown callsign-country mappings remain “Unspecified”.
+`data/stations.json` is a dated registration snapshot with reviewed operator corrections, not live availability or surveyed positions. Publication of the registered roster was authorised. Prefixes and groups came from the 430-row `NS26_Station_Grids.xlsx` supplied on 20 October 2026. Current positions and reviewed corrections are retained, including NZ1's corrected Trentham position. Unknown country mappings remain “Unspecified”.
 
-Imported channel plans, home settings, notes, local station edits and contact records stay in `localStorage` on the visitor's browser. Back them up before clearing browser data or switching devices. Downloads and backups are user-triggered. Shared updates open a GitHub issue draft containing only the station's public map fields and previous map record; the visitor must finish submitting it on GitHub. Contact logs and frequency permissions are excluded. OpenStreetMap receives tile requests and NOAA receives weather requests. No analytics are installed.
-
-Only publish an updated shared roster when its release is authorised. Registration positions can be inaccurate; verify with the team. The public site intentionally ships **no Australian frequency approvals**: the restricted Australian spreadsheet was not supplied. The Canadian channel list does not establish Australian authority. CSV import is not CPA/RPA binary conversion.
-
-## Run and check
-
-No build step or npm dependencies are required. Leaflet 1.9.4 is vendored with its BSD licence. Coordinate-based display-zone suggestions use a pinned, offline [PhotoStructure tz-lookup](https://github.com/photostructure/tz-lookup) copy under CC0-1.0 (`assets/vendor/tz-lookup.LICENSE`); borders are approximate and operators can correct the suggestion. The browser supplies daylight-saving rules.
-
-```sh
-python3 -m http.server 8790 --bind 127.0.0.1
-npm test
-node --check assets/app.js
-```
-
-Open `http://127.0.0.1:8790`. This also works under a GitHub Pages repository subpath; all local assets use relative URLs. Internet is needed for map tiles and fresh weather. Core calculations, search, logging, import/export and vendored map controls remain local while the page is open.
-
-## GitHub Pages deployment
-
-Publish **this directory only** in its own public repository. Do not push the parent radio-console workspace. GitHub Pages uses the `Publish Fieldbook` workflow (`.github/workflows/pages.yml`) with source branch `main`. The workflow tests the project, packages only static assets and the public roster, then deploys to the same Pages URL.
-
-The optional `scripts/publish.sh` performs a new-repository deployment using an already authenticated GitHub CLI. It creates a public repository named `noble-skywave-fieldbook` in the signed-in account, pushes only this directory and enables Pages. It refuses an existing Git origin or existing repository name rather than replacing an unrelated site. Credentials belong in the CLI's external configuration, never in this directory.
+Grids, distance and bearing use current coordinates and the selected reference, rather than fixed AU16 measurements. Home settings and local roster edits stay in the visitor's browser. Older private channel/contact fields remain in storage but are not displayed, used for markers, or included in station exports or proposals. OpenStreetMap receives tile requests. There are no analytics, radio controls or automatic messages.
 
 ## Shared station updates
 
-Visitors choose **Add station**, or select a station and choose **Edit station**. **Save on this device** changes their local roster and exports. **Submit shared update** requires explicit public-release consent and opens a GitHub request; visitors submit that request using their GitHub account.
+Choose **Add station**, or select a station and choose **Edit this station**. **Save on this device** changes the local map and exports. **Submit shared update** requires public-release consent and opens a GitHub issue draft with only public station fields and the previous shared record. The visitor completes submission on GitHub.
 
-The repository maintainer reviews the proposed callsign and location, then applies the **`publish-station`** label to approve. The workflow independently verifies that the labeller has write/maintain/admin permission, validates the bounded JSON proposal, checks that the original shared entry has not changed, and rejects duplicate callsigns or invalid coordinates. It commits the reviewed roster, runs tests, deploys, then closes the request only after success. Issue text is never evaluated as code or interpolated into shell commands. Action revisions are pinned.
+A repository maintainer reviews the request and applies **publish-station** to approve publication. The workflow verifies write/maintain/admin permission, validates the bounded proposal, checks the previous record, rejects duplicates and invalid coordinates, commits the roster, tests and deploys. The issue closes only after successful deployment. Issue text is never evaluated as code or interpolated into shell commands. Actions are pinned.
 
-Review one request at a time; GitHub serializes Pages deployments. A changed/stale request or conflicting push fails without overwriting newer data. Refresh and resubmit the request, or remove/reapply the approval label after reviewing it again. Ordinary `station-update` labels do not publish anything. Local edits remain a device roster until the visitor chooses **Restore shared roster**; this does not remove their contact log.
+Review one request at a time. Stale proposals and conflicting pushes fail without overwriting newer data. An ordinary **station-update** label does not publish. **Restore shared roster** removes local roster changes while preserving home settings.
 
-## Import formats
+## Import and export
 
 Station CSV/JSON fields:
 
@@ -63,26 +38,29 @@ Station CSV/JSON fields:
 callsign,prefix,challenge_group,name,country,place,lat,lon,location_source
 ```
 
-GeoJSON imports accept Point features with callsign/name/country properties. Coordinates use `[longitude, latitude]`. Duplicate callsigns, malformed CSV, missing coordinates and out-of-range positions reject the whole import.
+GeoJSON accepts Point features with `[longitude, latitude]` coordinates. Duplicate callsigns, missing/out-of-range coordinates and malformed CSV reject the entire import. CSV exports neutralise spreadsheet formulas. Exports include calculated grids and distance/bearing with the reference callsign. KML is a static overlay, not a live TAK feed or native SitaWare package.
 
-Challenge group is an editable registration field, not a claim about a live radio connection. The full table and map share the same filters; selecting a table callsign locates it on the map. Radio-check planning and weather remain available in the expandable section below the directory.
+## Development and deployment
 
-Channel CSV/JSON fields (download an empty template from Channel book):
+No npm dependencies or build step are needed for local use:
 
-```csv
-channel_id,dial_mhz,centre_mhz,mode,max_power_w,country,authorised,authority,local_callsign,phase,valid_from,valid_to
+```sh
+python3 -m http.server 8790 --bind 127.0.0.1
+npm test
+npm run check
 ```
 
-`dial_mhz` and `mode` are required. Do not derive the dial using a universal offset. Mark `authorised=yes` only for the issued authority covering that station/country, with its reference and applicable validity dates. Imported approvals are operator-supplied, not independently verified by this site. Phases are labels from your file; no phase schedule is invented. Exported CSV neutralises spreadsheet formula prefixes.
+Open `http://127.0.0.1:8790`. Relative assets work under the GitHub Pages repository path. Internet is needed for tiles; roster calculations and map controls run locally while the page is open.
 
-## Sources
+GitHub Pages uses **Publish Fieldbook** (`.github/workflows/pages.yml`) on `main`. `scripts/build-site.mjs` packages only `index.html`, `.nojekyll`, `assets/` and public station JSON into `_site/`. Publish this repository only, never the parent radio-console workspace or credentials. The public URL is unchanged.
 
-- Roster: [Noble Skywave registration map](https://nobleskywave.ca/map-info), snapshot 20 October 2026.
-- Feature brief: Australian “261011 Noble Skywave 2026 Tips and Tricks”, supplied locally. The presentation itself is not republished.
-- [NOAA SWPC K-index](https://www.swpc.noaa.gov/products/planetary-k-index), [public JSON feeds](https://services.swpc.noaa.gov/).
-- [VOACAP](https://www.voacap.com/) and [Bureau GRAFEX](https://www.sws.bom.gov.au/HF_Systems/7/1). Manual links only; no hosted-service scraping.
-- [Leaflet](https://leafletjs.com/), [OpenStreetMap](https://www.openstreetmap.org/copyright).
+The optional `scripts/publish.sh` creates a new repository using an authenticated GitHub CLI and refuses an existing repository/origin. Credentials belong outside this directory.
 
-## Licence
+## Sources and licences
 
-Application code: MIT; see `LICENSE`. Leaflet: see `assets/vendor/LICENSE`. Time-zone lookup: CC0-1.0, see `assets/vendor/tz-lookup.LICENSE`. Roster factual data is supplied separately; the MIT code licence does not assert ownership of registration data or Defence documents. Map tiles and external data retain their respective providers' terms.
+- [Noble Skywave registration map](https://nobleskywave.ca/map-info), snapshot 20 October 2026, supplied workbook and reviewed updates.
+- [OpenStreetMap](https://www.openstreetmap.org/copyright) map tiles.
+- Vendored [Leaflet](https://leafletjs.com/) 1.9.4, BSD licence in `assets/vendor/LICENSE`.
+- Pinned offline [PhotoStructure tz-lookup](https://github.com/photostructure/tz-lookup), CC0-1.0 in `assets/vendor/tz-lookup.LICENSE`. Approximate zone boundaries; operators can correct suggestions. The browser applies daylight saving.
+
+Application code: MIT (`LICENSE`). This does not assert ownership of registration data or external map tiles.
