@@ -9,7 +9,7 @@ The main view presents **NS26_Station_Grids.xlsx** as a map with a station sideb
 - Search stations by callsign, prefix, challenge group, town or grid. Filter prefixes/groups/unworked stations; sort by distance or longest path. Marker colour identifies SSB, 2G or 3G challenge families.
 - Add and edit callsigns, team names, countries and positions. Station rows show signed coordinates and Maidenhead locators; search also matches town/location names and grids. Enter decimal degrees, use a grid-square centre, or pick a point on the map.
 - Save edits locally or open a shared update request on GitHub. A maintainer approves shared changes; the site republishes the reviewed roster automatically.
-- Set your own station, signed decimal coordinates and Australian/NZ/UTC display time zone.
+- Enter a registered callsign to fill country, current coordinates and a suggested local display time zone, or choose “Use as my station” in the map sidebar. Coordinates and zone remain editable; saved corrections are preserved when reopening the form. Unknown callsigns can be entered manually.
 - Great-circle distance, initial true bearings, short and long path overlays, daylight/greyline preview, UTC solar and civil-twilight events.
 - Local channel book: import your **issued Australian authority list**, explicit dial frequencies, mode, phase, power limits and authority reference. Unknown, wrong-country, wrong-station and expired approvals remain unapproved.
 - Copy a useful Slack coordination message with explicit radio dial, mode, UTC date/time and receive-only status. Nothing is posted automatically.
@@ -31,7 +31,7 @@ Only publish an updated shared roster when its release is authorised. Registrati
 
 ## Run and check
 
-No build step or npm dependencies are required. Leaflet 1.9.4 is vendored with its BSD licence.
+No build step or npm dependencies are required. Leaflet 1.9.4 is vendored with its BSD licence. Coordinate-based display-zone suggestions use a pinned, offline [PhotoStructure tz-lookup](https://github.com/photostructure/tz-lookup) copy under CC0-1.0 (`assets/vendor/tz-lookup.LICENSE`); borders are approximate and operators can correct the suggestion. The browser supplies daylight-saving rules.
 
 ```sh
 python3 -m http.server 8790 --bind 127.0.0.1
@@ -85,4 +85,4 @@ channel_id,dial_mhz,centre_mhz,mode,max_power_w,country,authorised,authority,loc
 
 ## Licence
 
-Application code: MIT; see `LICENSE`. Leaflet: see `assets/vendor/LICENSE`. Roster factual data is supplied separately; the MIT code licence does not assert ownership of registration data or Defence documents. Map tiles and external data retain their respective providers' terms.
+Application code: MIT; see `LICENSE`. Leaflet: see `assets/vendor/LICENSE`. Time-zone lookup: CC0-1.0, see `assets/vendor/tz-lookup.LICENSE`. Roster factual data is supplied separately; the MIT code licence does not assert ownership of registration data or Defence documents. Map tiles and external data retain their respective providers' terms.

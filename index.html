@@ -8,9 +8,9 @@
   <title>Skywave Fieldbook · Noble Skywave 2026</title>
   <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./assets/vendor/leaflet.css">
-  <link rel="stylesheet" href="./assets/style.css?v=station-sheet-4">
+  <link rel="stylesheet" href="./assets/style.css?v=station-setup-1">
   <script defer src="./assets/vendor/leaflet.js"></script>
-  <script type="module" src="./assets/app.js?v=station-sheet-4"></script>
+  <script type="module" src="./assets/app.js?v=station-setup-1"></script>
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -78,7 +78,7 @@
     </section>
   </main>
   <footer><span><b>SKYWAVE FIELDBOOK</b> · Made by NZ1 for the HF community.</span><span>Independent tool · Positions reported, not verified · <a href="https://nobleskywave.ca/" target="_blank" rel="noopener noreferrer">Official exercise ↗</a></span></footer>
-  <dialog id="home-dialog"><form id="home-form"><div class="dialog-head"><span class="eyebrow">YOUR END OF THE CIRCUIT</span><button type="button" data-close aria-label="Close">×</button></div><h2>Set your station</h2><p>Use your actual station position for distance and bearing. These settings stay on this device.</p><div class="form-grid"><label>Callsign<input name="callsign" maxlength="32" required placeholder="AU…"></label><label>Country<input name="country" maxlength="60" required value="Australia"></label><label>Latitude (south is negative)<input name="lat" type="number" min="-90" max="90" step="any" required></label><label>Longitude (east is positive)<input name="lon" type="number" min="-180" max="180" step="any" required></label><label class="full">Display time zone<select name="zone"><option>Australia/Sydney</option><option>Australia/Brisbane</option><option>Australia/Adelaide</option><option>Australia/Darwin</option><option>Australia/Perth</option><option>Pacific/Auckland</option><option>UTC</option></select></label></div><p class="muted">You can also select a registered station on the map and choose “Use as my station”.</p><button class="button button-dark" type="submit">Save station</button></form></dialog>
+  <dialog id="home-dialog"><form id="home-form"><div class="dialog-head"><span class="eyebrow">YOUR END OF THE CIRCUIT</span><button type="button" data-close aria-label="Close">×</button></div><h2>Set your station</h2><p>Enter your registered callsign to fill your station details. These settings stay on this device.</p><div class="form-grid"><label>Callsign<input name="callsign" list="home-stations" aria-describedby="home-match-status" maxlength="32" required placeholder="e.g. NZ1 or AU16" autocomplete="off"><datalist id="home-stations"></datalist></label><label>Country<input name="country" list="station-countries" maxlength="60" required placeholder="Filled from your callsign"></label><label>Latitude (south is negative)<input name="lat" type="number" min="-90" max="90" step="any" required></label><label>Longitude (east is positive)<input name="lon" type="number" min="-180" max="180" step="any" required></label><label class="full">Display time zone<select name="zone"><option>Australia/Sydney</option><option>Australia/Brisbane</option><option>Australia/Adelaide</option><option>Australia/Darwin</option><option>Australia/Perth</option><option>Pacific/Auckland</option><option>UTC</option></select></label></div><p id="home-match-status" class="muted" role="status" aria-live="polite">Enter your registered callsign to fill country, coordinates and time zone.</p><p class="muted">You can also select a registered station on the map and choose “Use as my station”.</p><button class="button button-dark" type="submit">Save station</button></form></dialog>
   <dialog id="station-dialog"><form id="station-form">
     <div class="dialog-head"><span class="eyebrow">STATION CALLSIGN &amp; LOCATION</span><button type="button" data-close aria-label="Close">×</button></div>
     <h2 id="station-editor-title">Add station</h2><input type="hidden" name="original_callsign">

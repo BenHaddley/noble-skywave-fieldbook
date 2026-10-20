@@ -1,12 +1,15 @@
-import {escapeHtml as esc,callsign,coordinate,distance,bearing,greatCircle,darkPolygon,sunElevation,solarEvents,stationRows,channelRows,permission,fileRows,csvExport,stationExport,contactRow,isWorked,RESULT_LABELS,antennaDimensions,EARTH_KM} from './core.js?v=station-sheet-4';
-import {locator,locatorPosition,upsertStation,stationProposal,proposalBody,sheetRow,challengeFamily} from './core.js?v=station-sheet-4';
+import {escapeHtml as esc,callsign,coordinate,distance,bearing,greatCircle,darkPolygon,sunElevation,solarEvents,stationRows,channelRows,permission,fileRows,csvExport,stationExport,contactRow,isWorked,RESULT_LABELS,antennaDimensions,EARTH_KM} from './core.js?v=station-setup-1';
+import {locator,locatorPosition,upsertStation,stationProposal,proposalBody,sheetRow,challengeFamily} from './core.js?v=station-setup-1';
+import {stationSetup,findSetupStation} from './station-setup.js?v=station-setup-1';
 
 const $=selector=>document.querySelector(selector), $$=selector=>[...document.querySelectorAll(selector)];
 const KEY='skywave-fieldbook-v1', L=window.L;
+const DEVICE_ZONE=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';
 const CHANNEL_HEADERS=['channel_id','dial_mhz','centre_mhz','mode','max_power_w','country','authorised','authority','local_callsign','phase','valid_from','valid_to'];
 const LOG_HEADERS=['utc','local_callsign','local_lat','local_lon','callsign','dial_mhz','mode','antenna','power_w','readability','strength','result','distance_km','notes'];
 let state={home:null,stations:null,stationOrigins:{},reference_callsign:'AU16',channels:[],contacts:[],rosterInfo:null}, publicRoster=null, selected=null, activeTab='map', noticeTimer, filePurpose=null;
 let pickingStation=false,editingSharedOriginal=null,stationView='map',tableSort={field:'callsign',order:1};
+let homeLookupCall=null,homeAutofillValues=null,homeManualFields=new Set();
 const GROUP_COLOURS={SSB:'#226ba4','2G':'#b77220','3G':'#7652a0',Unassigned:'#778386'};
 let weather=null, weatherBusy=false, skyTime=new Date();
 function validateHome(home){
@@ -30,7 +33,7 @@ function persist(){try{localStorage.setItem(KEY,JSON.stringify(state));return tr
 function fmtNumber(n){return Math.round(n).toLocaleString('en-AU');}
 function fmtFreq(n){return Number(n).toFixed(4).replace(/0$/,'');}
 function utcLabel(value,seconds=false){return new Date(value).toISOString().slice(0,seconds?19:16).replace('T',' ')+'Z';}
-function localLabel(value){return new Intl.DateTimeFormat('en-AU',{timeZone:state.home?.zone??'Australia/Sydney',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZoneName:'short'}).format(new Date(value));}
+function localLabel(value){return new Intl.DateTimeFormat('en-AU',{timeZone:state.home?.zone??DEVICE_ZONE,day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZoneName:'short'}).format(new Date(value));}
 function flag(country){const codes={'Australia':'AU','New Zealand':'NZ','Canada':'CA','United States':'US','United Kingdom':'GB','Latvia':'LV','Lithuania':'LT','Estonia':'EE','Germany':'DE','France':'FR','Italy':'IT','Poland':'PL','Czechia':'CZ','Romania':'RO','Netherlands':'NL','Norway':'NO','Sweden':'SE','Finland':'FI','Denmark':'DK','Belgium':'BE','Spain':'ES','Portugal':'PT','Ireland':'IE','Japan':'JP','South Korea':'KR','Singapore':'SG','South Africa':'ZA','Brazil':'BR','Chile':'CL','Argentina':'AR'};return Object.hasOwn(codes,country)?[...codes[country]].map(c=>String.fromCodePoint(c.charCodeAt(0)+127397)).join(''):'◉';}
 function stations(){
   const shared=new Map((publicRoster?.stations??[]).map(s=>[s.callsign,s]));
@@ -56,6 +59,7 @@ function updateCountryFilter(){
   }
   $('#station-countries').innerHTML=[...new Set(['Australia','New Zealand',...stations().map(s=>s.country)])].sort().map(c=>`<option value="${esc(c)}"></option>`).join('');
   $('#reference-stations').innerHTML=stations().map(s=>`<option value="${esc(s.callsign)}">${esc(s.challenge_group??'')}</option>`).join('');
+  $('#home-stations').innerHTML=stations().map(s=>`<option value="${esc(s.callsign)}">${esc(s.country)} · ${esc(s.place||locator(s))}</option>`).join('');
 }
 function renderReference(){
   const reference=referenceStation();
@@ -84,6 +88,7 @@ function renderSheetDetail(){
   node.innerHTML=`<div class="sheet-detail-heading"><div><span class="eyebrow">SELECTED STATION</span><h2>${esc(r.callsign)}</h2></div><button id="sidebar-clear" class="text-button">Close ×</button></div><div class="sheet-values">${[['Prefix',r.prefix],['Challenge group',r.challenge_group||'Not supplied'],['Latitude',r.lat.toFixed(5)],['Longitude',r.lon.toFixed(5)],['Grid (6-char)',r.grid_6],['Grid (4-char)',r.grid_4],['Distance from '+(ref?.callsign??'reference'),r.distance_km==null?'—':fmtNumber(r.distance_km)+' km'],['Bearing from '+(ref?.callsign??'reference'),r.bearing_deg==null?'—':r.bearing_deg+'° true']].map(([label,value])=>`<div><span>${esc(label)}</span><b>${esc(value)}</b></div>`).join('')}</div>${r.place?`<p>${esc(r.place)}</p>`:''}<div class="inline"><button id="sidebar-edit" class="text-button">Edit this station ↗</button><button id="sidebar-plan" class="text-button">Plan radio check ↗</button></div>`;
   $('#sidebar-clear').onclick=()=>{selected=null;pathLayer.clearLayers();renderStations();$('#circuit').innerHTML='<p>Select a station for contact planning.</p>';history.replaceState(null,'',location.pathname+location.search);};
   $('#sidebar-edit').onclick=()=>openStationEditor(selected);
+  const useHome=document.createElement('button');useHome.id='sidebar-as-home';useHome.type='button';useHome.className='text-button';useHome.textContent='Use as my station';useHome.onclick=()=>openHome(selected);node.querySelector('.inline').append(useHome);
   $('#sidebar-plan').onclick=()=>{$('#contact-planning').open=true;renderCircuit();$('#contact-planning').scrollIntoView({behavior:'smooth'});};
 }
 function renderStationTable(rows,reference){
@@ -146,7 +151,7 @@ function selectStation(call,focus=true){
 function renderHome(){
   $('#home-button').textContent=state.home?`${state.home.callsign} · Station settings ↗`:'Set your station ↗';
   renderReference();
-  drawHome();drawPath();tick();renderStations();renderCircuit();renderChannels();
+  drawHome();drawPath();drawSky();tick();renderStations();renderCircuit();renderChannels();
 }
 function sunState(point){const e=sunElevation(point,skyTime);return e>0?'Daylight':e>-6?'Civil twilight':e>-12?'Nautical twilight':e>-18?'Astronomical twilight':'Night';}
 function eventCell(values){return values.length?values.map(v=>new Date(v).toISOString().slice(11,16)+'Z').join(' / '):'No crossing';}
@@ -178,11 +183,44 @@ function goTab(tab){
   if(tab==='log')renderLog();if(tab==='channels')renderChannels();
 }
 function openHome(station=null){
-  const form=$('#home-form'),home=station??state.home;
-  form.elements.callsign.value=home?.callsign??'';form.elements.country.value=home?.country&&home.country!=='Unspecified'?home.country:'Australia';
-  form.elements.lat.value=home?.lat??'';form.elements.lon.value=home?.lon??'';form.elements.zone.value=state.home?.zone??'Australia/Sydney';
+  const form=$('#home-form'),home=station?stationSetup(station):state.home;
+  form.reset();homeManualFields=new Set();
+  for(const field of ['callsign','country','lat','lon'])form.elements[field].value=home?.[field]??'';
+  setHomeZone(home?.zone??DEVICE_ZONE);
+  homeLookupCall=home?.callsign??null;homeAutofillValues=home?homeValues():null;
+  $('#home-match-status').textContent=station?homeMatchLabel(station):home?'Your saved station details. You can edit any field, or enter another registered callsign.':'Enter your registered callsign to fill country, coordinates and time zone.';
   $('#home-dialog').showModal();
 }
+function homeValues(){return Object.fromEntries(['country','lat','lon','zone'].map(key=>[key,$('#home-form').elements[key].value]));}
+function setHomeZone(zone){
+  const select=$('#home-form').elements.zone;
+  if(![...select.options].some(option=>option.value===zone))select.add(new Option(zone,zone));
+  select.value=zone;
+}
+function homeMatchLabel(station){return `Filled from ${station.callsign}${station.place?' · '+station.place:''} · ${locator(station)}. Check the details below; every field is editable.`;}
+function fillHomeFromCall(preserveEntered=false){
+  const form=$('#home-form'),call=form.elements.callsign.value.trim().toUpperCase();
+  if(call===homeLookupCall)return;
+  const match=findSetupStation(stations(),call);
+  if(match){
+    const home=stationSetup(match);
+    for(const key of ['country','lat','lon','zone']){
+      if(preserveEntered&&homeManualFields.has(key))continue;
+      if(key==='zone')setHomeZone(home.zone);else form.elements[key].value=home[key];
+    }
+    homeLookupCall=call;homeAutofillValues=homeValues();
+    $('#home-match-status').textContent=homeMatchLabel(match);
+  }else{
+    // A different, unknown callsign must not keep another station's auto-filled position.
+    if(homeAutofillValues)for(const [key,value] of Object.entries(homeAutofillValues))if(form.elements[key].value===value){if(key==='zone')setHomeZone(DEVICE_ZONE);else form.elements[key].value='';}
+    homeLookupCall=null;homeAutofillValues=null;
+    $('#home-match-status').textContent=call?'No exact roster match. Choose a suggested callsign, or enter your details manually.':'Enter your registered callsign to fill country, coordinates and time zone.';
+  }
+}
+for(const zone of Intl.supportedValuesOf?.('timeZone')??[])if(![...$('#home-form').elements.zone.options].some(option=>option.value===zone))$('#home-form').elements.zone.add(new Option(zone,zone));
+$('#home-form').elements.callsign.addEventListener('input',()=>fillHomeFromCall());
+$('#home-form').elements.callsign.addEventListener('change',()=>fillHomeFromCall());
+for(const field of ['country','lat','lon','zone'])$('#home-form').elements[field].addEventListener('input',()=>homeManualFields.add(field));
 function editorError(message=''){
   $('#station-editor-error').textContent=message;$('#station-editor-error').hidden=!message;
 }
@@ -406,6 +444,7 @@ async function initialise(){
     const response=await fetch('./data/stations.json',{cache:'no-cache'});if(!response.ok)throw new Error('Roster download failed');
     const raw=await response.json();publicRoster={...raw,stations:stationRows(raw.stations)};
     renderRoster();renderHome();
+    if($('#home-dialog').open)fillHomeFromCall(true);
     const call=new URLSearchParams(location.hash.slice(1)).get('station');if(call)selectStation(call,false);
   }catch(error){renderRoster();notice('Shared roster unavailable. Import a station CSV / GeoJSON or retry later.',true);}
 }
