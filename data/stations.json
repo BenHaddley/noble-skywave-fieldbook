@@ -1,7 +1,7 @@
 {
   "title": "Noble Skywave registered stations",
   "source": "Registered station map, nobleskywave.ca/map-info. Shared by NZ1 with operator approval.",
-  "updated_at": "2026-10-20T00:50:19.140833+00:00",
+  "updated_at": "2026-10-22T06:53:52.466075+00:00",
   "note": "Shared roster: registered positions and reviewed operator updates. Not live presence; confirm locations with the teams.",
   "stations": [
     {
@@ -1047,7 +1047,7 @@
     {
       "callsign": "CA77",
       "prefix": "CA",
-      "challenge_group": "3GNS1",
+      "challenge_group": "2GNS1",
       "name": "CA77",
       "country": "Canada",
       "lat": 54.46046,
@@ -1217,7 +1217,7 @@
     {
       "callsign": "CZ2",
       "prefix": "CZ",
-      "challenge_group": "3GNS1",
+      "challenge_group": "SSB",
       "name": "CZ2",
       "country": "Czechia",
       "lat": 49.533369,
@@ -1327,7 +1327,7 @@
     {
       "callsign": "DE11",
       "prefix": "DE",
-      "challenge_group": "3GNS1",
+      "challenge_group": "SSB",
       "name": "DE11",
       "country": "Germany",
       "lat": 52.466133,
@@ -1487,7 +1487,7 @@
     {
       "callsign": "GB10",
       "prefix": "GB",
-      "challenge_group": "3GNS1",
+      "challenge_group": "SSB",
       "name": "GB10",
       "country": "United Kingdom",
       "lat": 52.806293,
@@ -1807,7 +1807,7 @@
     {
       "callsign": "NCS",
       "prefix": "NCS",
-      "challenge_group": "2GNS1",
+      "challenge_group": "SSB",
       "name": "NCS",
       "country": "Unspecified",
       "lat": 44.237305,
@@ -1817,7 +1817,7 @@
     {
       "callsign": "NCS1",
       "prefix": "NCS",
-      "challenge_group": "2GNS2",
+      "challenge_group": "SSB",
       "name": "NCS1",
       "country": "Unspecified",
       "lat": 44.237305,
@@ -1851,7 +1851,7 @@
       "challenge_group": "SSB",
       "name": "NZ3",
       "country": "New Zealand",
-      "lat": 40.4006,
+      "lat": -40.4006,
       "lon": 175.5727,
       "location_source": "Reported registration position"
     },
@@ -1861,7 +1861,7 @@
       "challenge_group": "SSB",
       "name": "NZ4",
       "country": "New Zealand",
-      "lat": 43.6108,
+      "lat": -43.6108,
       "lon": 172.3081,
       "location_source": "Reported registration position"
     },
@@ -2446,16 +2446,6 @@
       "location_source": "Reported registration position"
     },
     {
-      "callsign": "RU1",
-      "prefix": "RU",
-      "challenge_group": "2GNS1",
-      "name": "RU1",
-      "country": "Unspecified",
-      "lat": 43.11638,
-      "lon": 131.88248,
-      "location_source": "Reported registration position"
-    },
-    {
       "callsign": "SE1",
       "prefix": "SE",
       "challenge_group": "SSB",
@@ -3008,7 +2998,7 @@
     {
       "callsign": "US56",
       "prefix": "US",
-      "challenge_group": "2GNS2",
+      "challenge_group": "3GNS1",
       "name": "US56",
       "country": "United States",
       "lat": 36.086756,
@@ -3058,7 +3048,7 @@
     {
       "callsign": "US61",
       "prefix": "US",
-      "challenge_group": "2GNS2",
+      "challenge_group": "3GNS1",
       "name": "US61",
       "country": "United States",
       "lat": 27.836284,
@@ -3108,7 +3098,7 @@
     {
       "callsign": "US66",
       "prefix": "US",
-      "challenge_group": "SSB",
+      "challenge_group": "3GNS1",
       "name": "US66",
       "country": "United States",
       "lat": 40.661811,
@@ -4293,6 +4283,16 @@
       "country": "United States",
       "lat": 35.164582,
       "lon": -78.942488,
+      "location_source": "Reported registration position"
+    },
+    {
+      "callsign": "US186",
+      "prefix": "US",
+      "challenge_group": "3GNS1",
+      "name": "US186",
+      "country": "United States",
+      "lat": 41.391089,
+      "lon": -73.955605,
       "location_source": "Reported registration position"
     },
     {

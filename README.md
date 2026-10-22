@@ -18,7 +18,7 @@ The interface is limited to station information. It has no channel book, contact
 
 ## Data and privacy
 
-`data/stations.json` is a dated registration snapshot with reviewed operator corrections, not live availability or surveyed positions. Publication of the registered roster was authorised. Prefixes and groups came from the 430-row `NS26_Station_Grids.xlsx` supplied on 20 October 2026. Current positions and reviewed corrections are retained, including NZ1's corrected Trentham position. Unknown country mappings remain “Unspecified”.
+`data/stations.json` is a dated registration snapshot with reviewed operator corrections, not live availability or surveyed positions. Publication of the registered roster was authorised. Prefixes and groups came from the 430-row `NS26_Station_Grids.xlsx` supplied on 20 October 2026. On 22 October 2026 the roster was refreshed from the live registration map: US186 added, RU1 removed, NZ3/NZ4 latitudes corrected and nine challenge groups updated. Current positions and reviewed corrections are retained, including NZ1's corrected Trentham position. Unknown country mappings remain “Unspecified”.
 
 Grids, distance and bearing use current coordinates and the selected reference, rather than fixed AU16 measurements. Home settings and local roster edits stay in the visitor's browser. Older private channel/contact fields remain in storage but are not displayed, used for markers, or included in station exports or proposals. OpenStreetMap receives tile requests. There are no analytics, radio controls or automatic messages.
 
